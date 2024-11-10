@@ -20,13 +20,13 @@ const Hero: React.FC = () => {
           </h1>
 
           <p className="text-sm md:text-lg text-[#0F0A19] max-w-[520px] w-full">
-            Now that you have the vision and the plan, on this page you'll find
+            Now that you have the vision and the plan, on this page you&apos;ll find
             the list of Coaches needed to start your journey without excuses.
           </p>
 
           <div className="grid grid-cols-2 gap-5 max-w-[420px] w-full mt-2">
             <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-              I'm a Coach
+              I&apos;m a Coach
             </button>
             <button className="border-[1.5px] border-[#3D2278] text-[#3D2278] rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-all duration-300 hover:bg-[#3D2278] hover:text-white">
               Login

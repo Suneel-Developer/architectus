@@ -8,7 +8,7 @@ const ContactForm: React.FC = () => {
       </h2>
 
       <p className="text-[#0F0A19B2] text-sm md:text-base">
-        Reach out with questions and we'll respond quickly!
+        Reach out with questions and we&apos;ll respond quickly!
       </p>
 
       <form className="flex flex-col gap-5 mt-8">

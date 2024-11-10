@@ -102,7 +102,7 @@ const Hero: React.FC = () => {
           </h1>
 
           <p className="text-sm md:text-lg text-[#0F0A19] max-w-[600px] w-full">
-            It's time to create your workout plan. Be as specific as possible —
+            It&apos;s time to create your workout plan. Be as specific as possible —
             consider your sport discipline, training method, exercise type,
             skill level, full-body workouts, or focus on specific muscle groups.
           </p>

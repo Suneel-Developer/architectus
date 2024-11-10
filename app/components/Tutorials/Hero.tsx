@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
           </h1>
 
           <p className="text-sm md:text-lg text-[#0F0A19] max-w-[600px] w-full">
-            Now that you have the vision and the plan, on this page you'll find
+            Now that you have the vision and the plan, on this page you&apos;ll find
             the list of tutorials needed to start your journey without excuses.
           </p>
         </div>
