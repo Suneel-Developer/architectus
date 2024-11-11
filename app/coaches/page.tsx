@@ -13,8 +13,10 @@ const Coaches: React.FC = () => {
       <main className="workoutbg bg-no-repeat bg-center bg-cover relative">
         <NavTabs />
         <Hero />
-        <MenuModal />
         <CoachesList />
+        <div className="mb-10 md:mb-20">
+        <MenuModal />
+        </div>
       </main>
       <Footer />
     </>

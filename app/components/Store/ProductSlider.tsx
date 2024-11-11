@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { Pagination } from "swiper/modules";
 import SupplierPlan from "./SupplierPlan";
+import Reviews from "../Reviews";
 
 const products = [
   {
@@ -52,6 +53,7 @@ const products = [
 const ProductSlider: React.FC = () => {
   const [isOpenSupplierPlanModal, setIsOpenSupplierPlanModal] =
     useState<Boolean>(false);
+  const [isVisibleReviews, setIsVisibleReviews] = useState<Boolean>(false);
 
   const handleOpenSupplierPlanModal = () => {
     setIsOpenSupplierPlanModal(true);
@@ -59,6 +61,10 @@ const ProductSlider: React.FC = () => {
 
   const handleCloseSupplierPlanModal = () => {
     setIsOpenSupplierPlanModal(false);
+  };
+
+  const handleShowReviews = () => {
+    setIsVisibleReviews(!isVisibleReviews);
   };
 
   return (
@@ -123,17 +129,35 @@ const ProductSlider: React.FC = () => {
                   </div>
                 </div>
 
-                <button
-                  onClick={handleOpenSupplierPlanModal}
-                  className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
-                >
-                  Buy Now
-                </button>
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={handleOpenSupplierPlanModal}
+                    className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+                  >
+                    Buy Now
+                  </button>
+                  <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+                    Save
+                  </button>
+
+                  <button
+                    onClick={handleShowReviews}
+                    className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+                  >
+                    Reviews (4)
+                  </button>
+                </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {isVisibleReviews && (
+        <div className="px-4 my-16">
+          <Reviews />
+        </div>
+      )}
 
       {isOpenSupplierPlanModal && (
         <SupplierPlan onClose={handleCloseSupplierPlanModal} />

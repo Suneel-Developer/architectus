@@ -52,10 +52,11 @@ const coachesData = [
 ];
 
 const CoachesList: React.FC = () => {
-  const [visibleCoachId, setVisibleCoachId] = useState<number | null>(null);
+  const [visibleCoachId, setVisibleCoachId] = useState<number>(1);
   const [isShareModalVisible, setIsShareModalVisible] = useState<number | null>(
     null
   );
+  const [isVisibleReviews, setIsVisibleReviews] = useState<Boolean>(false);
 
   const handleToggleDetails = (id: number) => {
     setVisibleCoachId(visibleCoachId === id ? null : id);
@@ -67,6 +68,10 @@ const CoachesList: React.FC = () => {
 
   const handleCloseShareModal = () => {
     setIsShareModalVisible(null);
+  };
+
+  const handleShowReviews = () => {
+    setIsVisibleReviews(!isVisibleReviews);
   };
 
   return (
@@ -170,7 +175,7 @@ const CoachesList: React.FC = () => {
             {/* Details section */}
             {visibleCoachId === coach.id && (
               <div className="mt-6 pb-7 px-4 md:px-8">
-                <div className="flex flex-col pb-7 mb-7 gap-6 border-b-[#0F0A19]/20 border-b">
+                <div className="flex flex-col gap-6">
                   <p className="text-sm md:text-base text-[#0F1017]">
                     {coach.disc}
                   </p>
@@ -265,9 +270,19 @@ const CoachesList: React.FC = () => {
                       </Link>
                     </div>
                   </div>
+
+                  <div className={`grid grid-cols-2 mx-auto gap-3 max-w-[300px] w-full ${isVisibleReviews ? "mb-10" : "mb-0"}`}>
+                    <button className="bg-[#3D2278] text-white rounded-[10px] h-11 w-full text-center px-3 text-sm md:text-base font-medium transition-opacity duration-300 hover:opacity-90">
+                      Save
+                    </button>
+
+                    <button onClick={handleShowReviews} className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
+                      Reviews (4)
+                    </button>
+                  </div>
                 </div>
 
-                <Reviews />
+                {isVisibleReviews && <Reviews />}
               </div>
             )}
           </div>
