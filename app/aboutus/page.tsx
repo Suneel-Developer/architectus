@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Image from "next/image";
-import ContactForm from "../components/ContactForm";
+import ContactForm from "./ContactForm";
 
 const AboutUs: React.FC = () => {
   return (

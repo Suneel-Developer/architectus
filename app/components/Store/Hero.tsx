@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import SearchBar from "../SearchBar";
 import Image from "next/image";
 import ProductSlider from "./ProductSlider";
 import SupplierLoginModal from "./SupplierLoginModal";
@@ -9,6 +8,7 @@ import ForgotPasswordModal from "./ForgotPasswordModal";
 import UploadStoreModal from "./UploadStoreModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
+import MenuModal from "../MenuModal";
 
 const Hero: React.FC = () => {
   // const [isSupplierLoginModalOpen, setIsSupplierLoginModalOpen] =
@@ -127,6 +127,8 @@ const Hero: React.FC = () => {
         </div>
 
         <ProductSlider />
+
+        <MenuModal />
 
         {/* {isSupplierLoginModalOpen && (
           <SupplierLoginModal

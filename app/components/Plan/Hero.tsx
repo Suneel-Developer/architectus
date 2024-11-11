@@ -7,6 +7,7 @@ import ModifyVerificatioModal from "../Visualization/ModifyVerificatioModal";
 import DownloadModal from "../Visualization/DownloadModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
+import MenuModal from "../MenuModal";
 
 const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -102,12 +103,16 @@ const Hero: React.FC = () => {
           </h1>
 
           <p className="text-sm md:text-lg text-[#0F0A19] max-w-[600px] w-full">
-            It&apos;s time to create your workout plan. Be as specific as possible —
-            consider your sport discipline, training method, exercise type,
-            skill level, full-body workouts, or focus on specific muscle groups.
+            It&apos;s time to create your workout plan. Be as specific as
+            possible — consider your sport discipline, training method, exercise
+            type, skill level, full-body workouts, or focus on specific muscle
+            groups.
           </p>
 
-          <button onClick={handleCreateClick} className="bg-[#3D2278] text-white rounded-[10px] w-[156px] md:w-[200px] h-11 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+          <button
+            onClick={handleCreateClick}
+            className="bg-[#3D2278] text-white rounded-[10px] w-[156px] md:w-[200px] h-11 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+          >
             Create
           </button>
         </div>
@@ -130,23 +135,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-[420px] w-full mx-auto grid grid-cols-2 gap-5">
-          <button
-            onClick={handleModifyModalClick}
-            className="border-2 border-[#3D2278] rounded-[10px] h-11 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-          >
-            Modify
-          </button>
-
-          <button
-            onClick={handleDownloadModal}
-            className="border-2 border-[#3D2278] rounded-[10px] h-11 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-          >
-            Download
-          </button>
-        </div>
-
-        {/* Windows Modals Imports  */}
+        <MenuModal />
 
         {/* Create Window Modals  */}
         {isModalOpen && (
@@ -157,32 +146,6 @@ const Hero: React.FC = () => {
         )}
         {isVerificationModalOpen && (
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
-        )}
-
-        {/* 1. Modify Modal 2. ModifyProjectModal 3. ModifyVerificatioModal ======== Windows Modals */}
-        {isModifyModalOpen && (
-          <ModifyModal
-            onClose={handleCloseModifyModal}
-            onCreate={handleModifyProjectModal}
-          />
-        )}
-
-        {isModifyProjectModalOpen && (
-          <ModifyProjectModal
-            onClose={handleCloseModifyProjectModal}
-            onCreate={handleModifyVerificationModal}
-          />
-        )}
-
-        {isModifyVerificatioModalOpen && (
-          <ModifyVerificatioModal
-            onClose={handleCloseModifyVerificationModal}
-          />
-        )}
-
-        {/* DOWNLOAD MODAL WINDOW  */}
-        {isDownloadModalOpen && (
-          <DownloadModal onClose={handleCloseDownloadModal} />
         )}
       </div>
     </section>

@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import SearchBar from "../SearchBar";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
 import VideoModal from "./VideoModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
+import MenuModal from "../MenuModal";
 
 const Hero: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState<boolean>(false);
@@ -71,7 +71,8 @@ const Hero: React.FC = () => {
             <p className="text-xs md:text-sm text-[#0F0A19]/60 max-w-[34rem] flex-1">
               Search for workout&nbsp;
               <span className="font-semibold">
-              coach, sport discipline, training method, exercise type, skill level, full body, or focus on a specific muscle group.
+                coach, sport discipline, training method, exercise type, skill
+                level, full body, or focus on a specific muscle group.
               </span>
             </p>
           </div>
@@ -121,11 +122,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <button className="border-2 border-[#3D2278] rounded-[10px] w-[200px] mx-auto h-11 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
-            Share
-          </button>
-        </div>
+        <MenuModal />
 
         {isVideoModalOpen && <VideoModal onClose={handleCloseVideoModal} />}
 

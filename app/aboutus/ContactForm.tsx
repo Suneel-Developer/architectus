@@ -35,7 +35,10 @@ const ContactForm: React.FC = () => {
           className="placeholder:text-[#0F0A1999] placeholder:font-normal bg-white border border-[#0000001F] resize-none h-[140px] md:h-[160px] w-full outline-[#3D2278] text-[#0F0A19] font-medium text-sm md:text-base rounded-[10px] p-4"
         />
 
-        <button className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full h-11 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+        <button
+          type="button"
+          className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full h-11 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+        >
           Submit
         </button>
       </form>

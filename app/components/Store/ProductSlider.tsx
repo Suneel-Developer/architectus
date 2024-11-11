@@ -62,7 +62,7 @@ const ProductSlider: React.FC = () => {
   };
 
   return (
-    <div className="mb-32">
+    <div className="mb-12">
       <Swiper
         spaceBetween={20}
         pagination={{ clickable: true }}

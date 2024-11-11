@@ -153,3 +153,7 @@ body {
 .supplierPayment {
   background: linear-gradient(278.14deg, rgba(253, 241, 255, .85) 5.41%, hsla(0, 0%, 97%, .85) 50.97%, rgba(236, 235, 255, .85) 96.52%);
 }
+
+.no-scroll {
+  overflow: hidden;
+}
