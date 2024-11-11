@@ -134,13 +134,13 @@ const MenuModal = () => {
         </button>
       </div>
       {isOpenMenuModal && (
-        <div className="fixed inset-0 z-50 flex justify-end">
+        <div className="fixed inset-0 z-50 flex justify-end pl-5">
           <div
             onClick={handleOpenMenuModal}
             className="absolute inset-0 bg-[#0F1017B2] bg-opacity-70"
           ></div>
 
-          <div className="bg-white rounded-l-xl p-5 w-full h-screen max-w-[300px] relative">
+          <div className="bg-white rounded-l-xl px-3 md:px-5 py-5 w-full h-screen max-w-[300px] relative">
             <Image
               src="/assets/icons/close-icon.svg"
               alt="close-icon"
