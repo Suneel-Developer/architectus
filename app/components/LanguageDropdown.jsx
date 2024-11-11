@@ -35,9 +35,9 @@ const LanguageDropdown = () => {
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative hidden md:block">
+    <div ref={dropdownRef} className="relative block">
       <button
-        className="inline-flex langmenu items-center gap-2 rounded-xl p-3 focus:outline-none"
+        className="inline-flex langmenu items-center gap-2 rounded-lg md:rounded-xl py-3 px-1 md:px-3 focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Image
@@ -61,7 +61,7 @@ const LanguageDropdown = () => {
       </button>
 
       {isOpen && (
-        <div className="w-40 absolute top-12 text-[#0F1017] origin-top-right rounded-xl langmenu text-sm py-1 shadow-lg bg-white transition duration-100 ease-out">
+        <div className="w-40 absolute top-12 text-[#0F1017] right-0 md:left-0 rounded-xl langmenu text-sm py-1 shadow-lg bg-white transition duration-100 ease-out">
           {languages.map((language) => (
             <button
               key={language.name}

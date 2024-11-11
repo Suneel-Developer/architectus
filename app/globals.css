@@ -149,11 +149,27 @@ body {
   border-radius: 12px;
 }
 
-
 .supplierPayment {
-  background: linear-gradient(278.14deg, rgba(253, 241, 255, .85) 5.41%, hsla(0, 0%, 97%, .85) 50.97%, rgba(236, 235, 255, .85) 96.52%);
+  background: linear-gradient(
+    278.14deg,
+    rgba(253, 241, 255, 0.85) 5.41%,
+    hsla(0, 0%, 97%, 0.85) 50.97%,
+    rgba(236, 235, 255, 0.85) 96.52%
+  );
 }
 
 .no-scroll {
   overflow: hidden;
+}
+
+.logobg {
+  backdrop-filter: blur(13px);
+  background: linear-gradient(
+    111.61deg,
+    #ffffff 15.17%,
+    #f9f9f9 55.5%,
+    #fafafa 95.84%
+  );
+
+  box-shadow: 0px 0px 12px 0px #0f0a191a;
 }
