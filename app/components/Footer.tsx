@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         alt="footer-background"
         className="object-cover -z-10 absolute w-full h-full left-0 right-0 top-0 bottom-0"
       />
-      <div className="flex justify-between flex-col md:flex-row items-center gap-7 relative">
+      <div className="flex justify-between flex-col md:flex-row items-center gap-7 relative max-w-[1400px] w-full mx-auto">
         <Link href="/">
           <Image
             src="/assets/footer-logo.svg"
