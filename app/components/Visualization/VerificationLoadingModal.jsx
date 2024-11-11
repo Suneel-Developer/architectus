@@ -17,7 +17,7 @@ const VerificationLoadingModal = ({ onClose }) => {
           height={18}
           loading="lazy"
           onClick={onClose}
-          className="absolute top-[30px] right-[30px] cursor-pointer"
+          className="absolute top-5 md:top-[30px] right-[30px] cursor-pointer"
         />
 
         <div className="flex flex-col items-center py-12 gap-8">

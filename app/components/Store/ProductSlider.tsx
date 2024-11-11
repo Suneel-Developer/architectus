@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { Pagination } from "swiper/modules";
+import SupplierPlan from "./SupplierPlan";
 
 const products = [
   {
@@ -49,8 +50,19 @@ const products = [
 ];
 
 const ProductSlider: React.FC = () => {
+  const [isOpenSupplierPlanModal, setIsOpenSupplierPlanModal] =
+    useState<Boolean>(false);
+
+  const handleOpenSupplierPlanModal = () => {
+    setIsOpenSupplierPlanModal(true);
+  };
+
+  const handleCloseSupplierPlanModal = () => {
+    setIsOpenSupplierPlanModal(false);
+  };
+
   return (
-    <div>
+    <div className="mb-32">
       <Swiper
         spaceBetween={20}
         pagination={{ clickable: true }}
@@ -111,7 +123,10 @@ const ProductSlider: React.FC = () => {
                   </div>
                 </div>
 
-                <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+                <button
+                  onClick={handleOpenSupplierPlanModal}
+                  className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+                >
                   Buy Now
                 </button>
               </div>
@@ -119,6 +134,10 @@ const ProductSlider: React.FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {isOpenSupplierPlanModal && (
+        <SupplierPlan onClose={handleCloseSupplierPlanModal} />
+      )}
     </div>
   );
 };

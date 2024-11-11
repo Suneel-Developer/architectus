@@ -4,9 +4,14 @@ import SearchBar from "../SearchBar";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
 import VideoModal from "./VideoModal";
+import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
+import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 
 const Hero: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] =
+    useState<boolean>(false);
 
   const handleOpenVideoModal = () => {
     setIsVideoModalOpen(true);
@@ -14,6 +19,28 @@ const Hero: React.FC = () => {
 
   const handleCloseVideoModal = () => {
     setIsVideoModalOpen(false);
+  };
+
+  // Open Create modal
+  const handleCreateClick = () => {
+    setIsModalOpen(true);
+  };
+
+  //   Close Create modal
+  const handleCloseCreateVisualisationModal = () => {
+    setIsModalOpen(false);
+  };
+
+  //   Open VisualisationVerification Modal
+  const handleVerificationCreateClick = () => {
+    setIsModalOpen(false);
+    setIsVerificationModalOpen(true);
+  };
+
+  //  Close VisualisationVerification Modal
+  const handleCloseVerificationModal = () => {
+    setIsVerificationModalOpen(false);
+    setIsModalOpen(false);
   };
 
   return (
@@ -32,30 +59,29 @@ const Hero: React.FC = () => {
             </span>
           </h1>
 
-          <p className="text-sm md:text-lg text-[#0F0A19] max-w-[600px] w-full">
-            Now that you have the vision and the plan, on this page you&apos;ll find
-            the list of tutorials needed to start your journey without excuses.
-          </p>
-        </div>
+          <div className="mb-7 md:mb-10 flex items-center gap-3">
+            <Image
+              src="/assets/icons/suggestion.svg"
+              alt="suggestion"
+              width={20}
+              height={20}
+              loading="lazy"
+            />
 
-        <SearchBar />
+            <p className="text-xs md:text-sm text-[#0F0A19]/60 max-w-[34rem] flex-1">
+              Search for workout&nbsp;
+              <span className="font-semibold">
+              coach, sport discipline, training method, exercise type, skill level, full body, or focus on a specific muscle group.
+              </span>
+            </p>
+          </div>
 
-        <div className="mb-7 md:mb-12 flex items-center gap-3">
-          <Image
-            src="/assets/icons/suggestion.svg"
-            alt="suggestion"
-            width={20}
-            height={20}
-            loading="lazy"
-          />
-
-          <p className="text-xs md:text-sm text-[#0F0A19]/60 max-w-[34rem] flex-1">
-            Search for&nbsp;
-            <span className="font-semibold">
-              coach, sport discipline, training method, exercise type, skill
-              level, full body, or focus on a specific muscle group.
-            </span>
-          </p>
+          <button
+            onClick={handleCreateClick}
+            className="bg-[#3D2278] text-white rounded-[10px] h-12 md:h-[52px] text-center px-3 max-w-[150px] w-full text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+          >
+            Search
+          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -102,6 +128,17 @@ const Hero: React.FC = () => {
         </div>
 
         {isVideoModalOpen && <VideoModal onClose={handleCloseVideoModal} />}
+
+        {/* Create Window Modals  */}
+        {isModalOpen && (
+          <CreateVisualisationModal
+            onClose={handleCloseCreateVisualisationModal}
+            onCreate={handleVerificationCreateClick}
+          />
+        )}
+        {isVerificationModalOpen && (
+          <VerificationLoadingModal onClose={handleCloseVerificationModal} />
+        )}
       </div>
     </section>
   );

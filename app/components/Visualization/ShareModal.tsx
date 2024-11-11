@@ -27,7 +27,7 @@ const ShareModal: React.FC<ShareModalProps> = ({ onClose }) => {
           height={18}
           onClick={onClose}
           loading="lazy"
-          className="absolute top-[30px] right-[30px] cursor-pointer"
+          className="absolute top-5 md:top-[30px] right-[30px] cursor-pointer"
         />
 
         <div className="max-w-[440px] w-full mx-auto mt-10">

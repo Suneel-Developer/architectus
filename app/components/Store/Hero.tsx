@@ -1,9 +1,97 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import SearchBar from "../SearchBar";
 import Image from "next/image";
 import ProductSlider from "./ProductSlider";
+import SupplierLoginModal from "./SupplierLoginModal";
+import SupplierRegisterModal from "./SupplierRegisterModal";
+import ForgotPasswordModal from "./ForgotPasswordModal";
+import UploadStoreModal from "./UploadStoreModal";
+import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
+import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 
 const Hero: React.FC = () => {
+  // const [isSupplierLoginModalOpen, setIsSupplierLoginModalOpen] =
+  //   useState<boolean>(false);
+  // const [isSupplierRegisterModalOpen, setIsSupplierRegisterModalOpen] =
+  //   useState<boolean>(false);
+  // const [
+  //   isSupplierForgotPasswordModalOpen,
+  //   setIsSupplierForgotPasswordModalOpen,
+  // ] = useState<boolean>(false);
+  // const [isUploadStoreModalOpen, setIsUploadStoreModalOpen] =
+  //   useState<boolean>(false);
+
+  // //   Supplier Login Modal
+  // const handleSupplierLoginModalClick = () => {
+  //   setIsSupplierRegisterModalOpen(false);
+  //   setIsSupplierLoginModalOpen(true);
+  // };
+
+  // //  Close Supplier Login Modal
+  // const handleCloseSupplierLoginModal = () => {
+  //   setIsSupplierLoginModalOpen(false);
+  // };
+
+  // //  Open Supplier Register Modal
+  // const handleSupplierRegisterModal = () => {
+  //   setIsSupplierLoginModalOpen(false);
+  //   setIsSupplierRegisterModalOpen(true);
+  // };
+
+  // //  Close Supplier Register Modal
+  // const handleCloseSupplierRegisterModal = () => {
+  //   setIsSupplierRegisterModalOpen(false);
+  // };
+
+  // //  Open Supplier Forgot password Modal
+  // const handleSupplierForgotPasswordModal = () => {
+  //   setIsSupplierLoginModalOpen(false);
+  //   setIsSupplierRegisterModalOpen(false);
+  //   setIsSupplierForgotPasswordModalOpen(true);
+  // };
+
+  // //  Close Supplier Forgot password  Modal
+  // const handleCloseSupplierForgotPasswordModal = () => {
+  //   setIsSupplierForgotPasswordModalOpen(false);
+  // };
+
+  // //  Open Upload Store Modal
+  // const handleUploadStoreModal = () => {
+  //   setIsUploadStoreModalOpen(true);
+  // };
+
+  // //  Close Upload Store  Modal
+  // const handleCloseUploadStoreModal = () => {
+  //   setIsUploadStoreModalOpen(false);
+  // };
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] =
+    useState<boolean>(false);
+
+  // Open Create modal
+  const handleCreateClick = () => {
+    setIsModalOpen(true);
+  };
+
+  //   Close Create modal
+  const handleCloseCreateVisualisationModal = () => {
+    setIsModalOpen(false);
+  };
+
+  //   Open VisualisationVerification Modal
+  const handleVerificationCreateClick = () => {
+    setIsModalOpen(false);
+    setIsVerificationModalOpen(true);
+  };
+
+  //  Close VisualisationVerification Modal
+  const handleCloseVerificationModal = () => {
+    setIsVerificationModalOpen(false);
+    setIsModalOpen(false);
+  };
+
   return (
     <section className="px-5">
       <div className="max-w-[1180px] w-full mx-auto">
@@ -12,67 +100,69 @@ const Hero: React.FC = () => {
             Store
           </h1>
 
-          <p className="text-sm md:text-lg text-[#0F0A19] max-w-[520px] w-full">
-            Write a small description about your product or service such as
-            product/service type, relevant sports categories, and available
-            shipping countries.
-          </p>
+          <div className="mb-7 md:mb-10 flex items-center gap-3">
+            <Image
+              src="/assets/icons/suggestion.svg"
+              alt="suggestion"
+              width={20}
+              height={20}
+              loading="lazy"
+            />
 
-          <div className="grid grid-cols-2 gap-5 max-w-[420px] w-full mt-2">
-            <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-              Advertise
-            </button>
-            <button className="border-[1.5px] border-[#3D2278] text-[#3D2278] rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-all duration-300 hover:bg-[#3D2278] hover:text-white">
-              Login
-            </button>
+            <p className="text-xs md:text-sm text-[#0F0A19]/60 max-w-[34rem] flex-1">
+              Search for workout&nbsp;
+              <span className="font-semibold">
+                supplements, vitamins, training equipment, sportswear, events
+                and country location.
+              </span>
+            </p>
           </div>
-        </div>
 
-        <SearchBar />
-
-        <div className="mb-7 md:mb-12 flex items-center gap-3">
-          <Image
-            src="/assets/icons/suggestion.svg"
-            alt="suggestion"
-            width={20}
-            height={20}
-            loading="lazy"
-          />
-
-          <p className="text-xs md:text-sm text-[#0F0A19]/60 max-w-[34rem] flex-1">
-            Search for workout&nbsp;
-            <span className="font-semibold">
-              supplements, vitamins, training equipment, sportswear, events and
-              country location.
-            </span>
-          </p>
+          <button
+            onClick={handleCreateClick}
+            className="bg-[#3D2278] text-white rounded-[10px] w-full max-w-[150px] h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+          >
+            Search
+          </button>
         </div>
 
         <ProductSlider />
 
-        <div className="my-20 grid grid-cols-2 max-w-[600px] w-full mx-auto gap-5 md:gap-10">
-          <div className="bg-white shadow-1 py-4 rounded-[18px] flex items-center justify-center cursor-pointer">
-            <Image
-              src="/assets/ncc-logo.svg"
-              alt="ncc-logo"
-              width={100}
-              height={100}
-              loading="lazy"
-              className="w-auto h-[90px]"
-            />
-          </div>
+        {/* {isSupplierLoginModalOpen && (
+          <SupplierLoginModal
+            onClose={handleCloseSupplierLoginModal}
+            onSignup={handleSupplierRegisterModal}
+            onForgotPassword={handleSupplierForgotPasswordModal}
+          />
+        )}
 
-          <div className="bg-white shadow-1 py-4 rounded-[18px] flex items-center justify-center cursor-pointer">
-            <Image
-              src="/assets/r-company-logo.svg"
-              alt="ncc-logo"
-              width={100}
-              height={100}
-              loading="lazy"
-              className="w-auto h-20"
-            />
-          </div>
-        </div>
+        {isSupplierRegisterModalOpen && (
+          <SupplierRegisterModal
+            onClose={handleCloseSupplierRegisterModal}
+            onLogin={handleSupplierLoginModalClick}
+          />
+        )}
+
+        {isSupplierForgotPasswordModalOpen && (
+          <ForgotPasswordModal
+            onClose={handleCloseSupplierForgotPasswordModal}
+          />
+        )}
+
+        {isUploadStoreModalOpen && (
+          <UploadStoreModal onClose={handleCloseUploadStoreModal} />
+        )} */}
+
+        {/* Create Window Modals  */}
+        {isModalOpen && (
+          <CreateVisualisationModal
+            onClose={handleCloseCreateVisualisationModal}
+            onCreate={handleVerificationCreateClick}
+          />
+        )}
+        {isVerificationModalOpen && (
+          <VerificationLoadingModal onClose={handleCloseVerificationModal} />
+        )}
       </div>
     </section>
   );

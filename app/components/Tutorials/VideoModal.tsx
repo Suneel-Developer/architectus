@@ -25,7 +25,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ onClose }) => {
           height={18}
           onClick={onClose}
           loading="lazy"
-          className="absolute top-[30px] right-[30px] cursor-pointer"
+          className="absolute top-5 md:top-[30px] right-[30px] cursor-pointer"
         />
 
         <div className="w-full h-[300px] md:h-[350px] rounded-3xl overflow-hidden">

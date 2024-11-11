@@ -27,7 +27,7 @@ const ModifyProjectModal = ({ onClose, onCreate }) => {
           height={18}
           onClick={onClose}
           loading="lazy"
-          className="absolute top-[30px] right-[30px] cursor-pointer"
+          className="absolute top-5 md:top-[30px] right-[30px] cursor-pointer"
         />
 
         <div className="grid grid-cols-2 gap-5">

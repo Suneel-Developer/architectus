@@ -113,7 +113,7 @@ body {
 }
 
 .mySwiper .swiper-pagination-bullet {
-  background: #3D227833;
+  background: #3d227833;
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -128,16 +128,28 @@ body {
   border-radius: 30px;
 }
 
-
-
 @media screen and (max-width: 768px) {
   .mySwiper .swiper-pagination-bullet {
     width: 12px;
     height: 12px;
   }
-  
+
   .mySwiper .swiper-pagination-bullet-active {
     width: 36px;
     height: 12px;
   }
+}
+
+.formscrollbar::-webkit-scrollbar {
+  width: 0;
+}
+
+.borderUpload {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%233D2278FF' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='13' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 12px;
+}
+
+
+.supplierPayment {
+  background: linear-gradient(278.14deg, rgba(253, 241, 255, .85) 5.41%, hsla(0, 0%, 97%, .85) 50.97%, rgba(236, 235, 255, .85) 96.52%);
 }
