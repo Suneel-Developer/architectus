@@ -141,6 +141,14 @@ const Hero: React.FC = () => {
           </div>
         )}
 
+        <div className="flex items-center justify-center gap-2 mx-auto px-5 mb-14">
+          <div className="w-[45px] h-[15px] bg-[#3d2278] rounded-[30px] cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
+        </div>
+
         <MenuModal />
 
         {isVideoModalOpen && <VideoModal onClose={handleCloseVideoModal} />}

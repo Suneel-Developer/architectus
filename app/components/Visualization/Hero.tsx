@@ -31,8 +31,6 @@ const Hero: React.FC = () => {
     setIsModalOpen(false);
   };
 
-
-
   return (
     <section className="px-5 pb-10 md:pb-20">
       <div className="max-w-[1180px] w-full mx-auto">
@@ -57,7 +55,21 @@ const Hero: React.FC = () => {
         {/* Big Body Image  */}
         <div className="bg-[url('/assets/body-banner.jfif')] h-[280px] md:h-[500px] w-full rounded-2xl md:rounded-[20px] bg-cover bg-center mb-5 md:mb-12"></div>
 
+        <div className="grid grid-cols-2 gap-3 max-w-[300px] w-full mx-auto mb-10">
+          <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+            Save
+          </button>
+
+          <button
+            className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+          >
+            Body Scan
+          </button>
+        </div>
+
         <MenuModal />
+
+        {/* Windows Modals Imports  */}
 
         {/* Create Window Modals  */}
         {isModalOpen && (
