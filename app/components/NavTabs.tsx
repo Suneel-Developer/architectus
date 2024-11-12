@@ -21,7 +21,7 @@ const NavTabs = () => {
       </Link>
 
       <Link href="/plan" className={getTabClassName("/plan")}>
-        Workout
+        Sports
       </Link>
 
       <Link href="/coaches" className={getTabClassName("/coaches")}>

@@ -80,8 +80,7 @@ const Hero: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="shadow-1 bg-white rounded-[20px] overflow-hidden mb-12">
+          <div className="shadow-1 bg-white rounded-[20px] overflow-hidden mb-12 max-w-[570px] w-full mx-auto">
             <div className="relative">
               <img
                 src="/assets/video-thumbnail.jfif"
@@ -109,20 +108,19 @@ const Hero: React.FC = () => {
               </p>
 
               <div className="flex flex-col gap-2">
-                <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+                <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
                   Save
                 </button>
 
                 <button
                   onClick={handleShowReviews}
-                  className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+                  className="border-2 border-[#3D2278] rounded-[10px] h-12 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
                 >
                   Reviews (4)
                 </button>
               </div>
             </div>
           </div>
-        </div>
 
         {isVisibleReviews && (
           <div className="px-4 my-16">

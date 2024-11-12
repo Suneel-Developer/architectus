@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { RxDashboard } from "react-icons/rx";
 import { useRouter, usePathname } from "next/navigation";
 import ModifyModal from "./Visualization/ModifyModal";
 import ModifyProjectModal from "./Visualization/ModifyProjectModal";
@@ -10,6 +9,7 @@ import ShareModal from "./Visualization/ShareModal";
 import UserLoginModal from "./UserForm/UserLoginModal";
 import UserRegisterModal from "./UserForm/UserRegisterModal";
 import UserForgotPasswordModal from "./UserForm/UserForgotPasswordModal";
+import SupportModal from "./SupportModal";
 
 const MenuModal = () => {
   const [isOpenMenuModal, setIsOpenMenuModal] = useState<Boolean>(false);
@@ -25,10 +25,11 @@ const MenuModal = () => {
     useState<boolean>(false);
   const [isUserForgotPasswordModalOpen, setIsUserForgotPasswordModalOpen] =
     useState<boolean>(false);
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState<boolean>(false);
   const router = useRouter();
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const isworkOutPage = pathname === "/plan";
+  const isWorkOutOrHomePage = pathname === '/plan' || pathname === '/';
 
   const handleOpenMenuModal = () => {
     setIsOpenMenuModal(!isOpenMenuModal);
@@ -111,6 +112,16 @@ const MenuModal = () => {
     setIsUserForgotPasswordModalOpen(false);
   };
 
+  //  Open Support Modal
+  const handleSupportModal = () => {
+    setIsSupportModalOpen(true);
+  };
+
+  //  Close Support Modal
+  const handleCloseSupportModal = () => {
+    setIsSupportModalOpen(false);
+  };
+
   useEffect(() => {
     if (isOpenMenuModal) {
       document.body.classList.add("no-scroll");
@@ -129,9 +140,14 @@ const MenuModal = () => {
       <div className="flex justify-center">
         <button
           onClick={handleOpenMenuModal}
-          className="bg-[#3D2278] text-white rounded-full w-12 h-12 text-lg flex items-center justify-center transition-opacity duration-300 hover:opacity-90"
+          className="bg-[#3D2278] text-white rounded-full w-[50px] h-[50px] text-2xl flex items-center justify-center transition-opacity duration-300 hover:opacity-90"
         >
-          <RxDashboard />
+          <Image
+            src="/assets/icon.svg"
+            alt="brand icon"
+            width={24}
+            height={33}
+          />
         </button>
       </div>
       {isOpenMenuModal && (
@@ -153,13 +169,13 @@ const MenuModal = () => {
             />
 
             <div className="flex flex-col items-center gap-2 mt-14">
-              {isHomePage && (
+              {!isHomePage && (
                 <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
                   Body Scan
                 </button>
               )}
 
-              {!isworkOutPage && (
+              {!isWorkOutOrHomePage && (
                 <button
                   onClick={handleModifyModalClick}
                   className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
@@ -197,7 +213,7 @@ const MenuModal = () => {
               </button>
 
               <button
-                onClick={() => router.push("/aboutus")}
+                onClick={handleSupportModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
                 Support
@@ -244,6 +260,9 @@ const MenuModal = () => {
       {isUserForgotPasswordModalOpen && (
         <UserForgotPasswordModal onClose={handleCloseUserForgotPasswordModal} />
       )}
+
+      {/* Support Modal  */}
+      {isSupportModalOpen && <SupportModal onClose={handleCloseSupportModal} />}
     </div>
   );
 };
