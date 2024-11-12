@@ -53,19 +53,8 @@ const Hero: React.FC = () => {
     <section className="px-5 pb-10 md:pb-20">
       <div className="max-w-[1180px] w-full mx-auto">
         <div className="flex flex-col gap-6 md:gap-8 mb-12 md:mb-20">
-          <h1 className="max-w-full text-4xl md:text-5xl lg:text-[64px] font-bold text-[#0F0A19] lg:max-w-2xl leading-[1.2]">
-            Video&nbsp;
-            <span className="relative">
-              <span className="text-[#3D2278]">Tutorials</span>
-              <img
-                src="/assets/linetuts.webp"
-                alt="linewrk"
-                className="absolute left-0 top-[45px] md:top-[65px] lg:top-[76px]"
-              />
-            </span>
-          </h1>
 
-          <div className="mb-7 md:mb-10 flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <Image
               src="/assets/icons/suggestion.svg"
               alt="suggestion"

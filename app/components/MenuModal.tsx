@@ -28,6 +28,7 @@ const MenuModal = () => {
   const router = useRouter();
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const isworkOutPage = pathname === "/plan";
 
   const handleOpenMenuModal = () => {
     setIsOpenMenuModal(!isOpenMenuModal);
@@ -157,12 +158,15 @@ const MenuModal = () => {
                   Body Scan
                 </button>
               )}
-              <button
-                onClick={handleModifyModalClick}
-                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-              >
-                Modify
-              </button>
+
+              {!isworkOutPage && (
+                <button
+                  onClick={handleModifyModalClick}
+                  className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+                >
+                  Modify
+                </button>
+              )}
 
               <button
                 onClick={handleShareModal}
@@ -171,7 +175,10 @@ const MenuModal = () => {
                 Share
               </button>
 
-              <button  onClick={() => router.push("/favorites")} className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
+              <button
+                onClick={() => router.push("/favorites")}
+                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+              >
                 Favorites
               </button>
 

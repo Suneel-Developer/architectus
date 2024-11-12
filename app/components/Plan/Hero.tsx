@@ -1,9 +1,39 @@
 "use client";
 import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/swiper-bundle.css";
+import { Pagination } from "swiper/modules";
 import Image from "next/image";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 import Reviews from "../Reviews";
+
+// Plans Data
+
+const plansdata = [
+  {
+    id: 1,
+    image: "/assets/plan-1.webp",
+    name: "Full Body workout",
+  },
+  {
+    id: 2,
+    image: "/assets/plan-2.avif",
+    name: "Warm Up Excercise",
+  },
+  {
+    id: 3,
+    image: "/assets/plan-3.avif",
+    name: "Cool Down After Workout",
+  },
+
+  {
+    id: 4,
+    image: "/assets/plan-2.avif",
+    name: "Warm Up Excercise",
+  },
+];
 
 const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -41,24 +71,23 @@ const Hero: React.FC = () => {
     <section className="px-5 pb-10 md:pb-20">
       <div className="max-w-[1180px] w-full mx-auto">
         <div className="flex flex-col gap-6 md:gap-8 mb-12 md:mb-20">
-          <h1 className="max-w-full text-4xl md:text-5xl lg:text-[64px] font-bold text-[#0F0A19] lg:max-w-2xl leading-[1.2]">
-            Your&nbsp;
-            <span className="relative">
-              <span className="text-[#3D2278]">Plan</span>
-              <img
-                src="/assets/linewrk.webp"
-                alt="linewrk"
-                className="absolute left-0 top-[45px] md:top-[65px] lg:top-[76px]"
-              />
-            </span>
-          </h1>
+          <div className="flex items-start gap-3">
+            <Image
+              src="/assets/icons/suggestion.svg"
+              alt="suggestion"
+              width={20}
+              height={20}
+              loading="lazy"
+              className="mt-[6px]"
+            />
 
-          <p className="text-sm md:text-lg text-[#0F0A19] max-w-[600px] w-full">
-            It&apos;s time to create your workout plan. Be as specific as
-            possible — consider your sport discipline, training method, exercise
-            type, skill level, full-body workouts, or focus on specific muscle
-            groups.
-          </p>
+            <p className="text-sm md:text-base text-[#0F0A19] max-w-[34rem] flex-1">
+              It&apos;s time to create your workout plan. Be as specific as
+              possible — consider your sport discipline, training method,
+              exercise type, skill level, full-body workouts, or focus on
+              specific muscle groups.
+            </p>
+          </div>
 
           <button
             onClick={handleCreateClick}
@@ -68,50 +97,67 @@ const Hero: React.FC = () => {
           </button>
         </div>
 
-        <div className="bg-white rounded-2xl md:rounded-[20px] overflow-hidden shadow-1 w-full">
-          <div className="relative bg-[#0F0A19]">
-            <Image
-              src="/assets/workout-plan.svg"
-              alt="workout plan"
-              width={100}
-              height={100}
-              loading="lazy"
-              className="w-full md:h-[500px] h-full"
-            />
-          </div>
-          <div className="py-6 text-center px-2">
-            <h3 className="text-xl md:text-3xl font-medium text-[#0F0A19]">
-              90 Days Workout Plan
-            </h3>
+        <Swiper
+          spaceBetween={20}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          breakpoints={{
+            10: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {plansdata.map((plan) => (
+            <SwiperSlide key={plan.id}>
+              <div className="bg-white rounded-2xl overflow-hidden shadow-1 w-full mb-14 md:mb-20">
+                <div className="h-[300px] w-full border-b">
+                  <img
+                    src={plan.image}
+                    alt={plan.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-center px-2 py-5">
+                  <h3 className="text-xl md:text-2xl font-medium text-[#0F0A19]">
+                    {plan.name}
+                  </h3>
 
-            <div className="grid grid-cols-2 gap-2 max-w-[300px] w-full mx-auto mt-8">
-              <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-                Save
-              </button>
+                  <div className="grid grid-cols-2 gap-2 max-w-[300px] w-full mx-auto mt-8">
+                    <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+                      Save
+                    </button>
 
-              <button
-                onClick={handleShowReviews}
-                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-              >
-                Reviews (4)
-              </button>
-            </div>
-          </div>
-        </div>
+                    <button
+                      onClick={handleShowReviews}
+                      className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+                    >
+                      Reviews (4)
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
         {isVisibleReviews && (
           <div className="px-4 my-16">
             <Reviews />
           </div>
         )}
-
-        <div className="flex items-center justify-center gap-2 mx-auto px-5 mt-14">
-          <div className="w-[45px] h-[15px] bg-[#3d2278] rounded-[30px] cursor-pointer"></div>
-          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
-          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
-          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
-          <div className="w-[15px] h-[15px] bg-[#3d227833] rounded-full cursor-pointer"></div>
-        </div>
 
         {/* Create Window Modals  */}
         {isModalOpen && (

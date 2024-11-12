@@ -96,11 +96,8 @@ const Hero: React.FC = () => {
     <section className="px-5">
       <div className="max-w-[1180px] w-full mx-auto">
         <div className="flex flex-col gap-6 md:gap-8 mb-12 md:mb-20">
-          <h1 className="max-w-full text-4xl md:text-5xl lg:text-[64px] font-bold text-[#0F0A19] lg:max-w-2xl leading-[1.2]">
-            Store
-          </h1>
 
-          <div className="mb-7 md:mb-10 flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <Image
               src="/assets/icons/suggestion.svg"
               alt="suggestion"
