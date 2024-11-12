@@ -53,7 +53,6 @@ const displayedCoaches = [
 ];
 
 const CoachesSlider: React.FC = () => {
-  const [visibleCoachId, setVisibleCoachId] = useState<number>(0);
   const [isShareModalVisible, setIsShareModalVisible] =
     useState<Boolean>(false);
   const [isVisibleReviews, setIsVisibleReviews] = useState<boolean>(false);
@@ -85,12 +84,9 @@ const CoachesSlider: React.FC = () => {
             modules={[Pagination]}
             className="mySwiper"
           >
-            {displayedCoaches.map((coach, index) => (
+            {displayedCoaches.map((coach) => (
               <SwiperSlide>
-                <div
-                  key={index}
-                  className="shadow-2 bg-white rounded-2xl md:rounded-[20px] overflow-hidden  mb-14 md:mb-20"
-                >
+                <div className="shadow-2 bg-white rounded-2xl md:rounded-[20px] overflow-hidden  mb-14 md:mb-20">
                   {/* Button */}
                   <button className="flex w-full gap-4 flex-col py-5 px-4 md:px-[30px] text-left faq">
                     <div className="flex items-center w-full justify-between">
