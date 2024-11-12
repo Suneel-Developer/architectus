@@ -59,8 +59,6 @@ const Hero: React.FC = () => {
 
         <MenuModal />
 
-        {/* Windows Modals Imports  */}
-
         {/* Create Window Modals  */}
         {isModalOpen && (
           <CreateVisualisationModal

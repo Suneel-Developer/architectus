@@ -16,7 +16,6 @@ const Header: React.FC = () => {
                 width={17}
                 height={24}
                 loading="lazy"
-                // className="w-auto h-11 md:h-[64px]"
               />
             </div>
 

@@ -1,25 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import ModifyModal from "../Visualization/ModifyModal";
-import ModifyProjectModal from "../Visualization/ModifyProjectModal";
-import ModifyVerificatioModal from "../Visualization/ModifyVerificatioModal";
-import DownloadModal from "../Visualization/DownloadModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
-import MenuModal from "../MenuModal";
+import Reviews from "../Reviews";
 
 const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
-  const [isModifyModalOpen, setIsModifyModalOpen] = useState<boolean>(false);
-  const [isModifyProjectModalOpen, setIsModifyProjectModalOpen] =
-    useState<boolean>(false);
-  const [isModifyVerificatioModalOpen, setIsModifyVerificatioModalOpen] =
-    useState<boolean>(false);
-  const [isDownloadModalOpen, setIsDownloadModalOpen] =
-    useState<boolean>(false);
+  const [isVisibleReviews, setIsVisibleReviews] = useState<Boolean>(false);
 
   // Open Create modal
   const handleCreateClick = () => {
@@ -43,47 +33,8 @@ const Hero: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  //   Modify Modal
-  const handleModifyModalClick = () => {
-    setIsModifyModalOpen(true);
-  };
-
-  //  Close Modify Modal
-  const handleCloseModifyModal = () => {
-    setIsModifyModalOpen(false);
-  };
-
-  //  Open Modify Project Modal
-  const handleModifyProjectModal = () => {
-    setIsModifyModalOpen(false);
-    setIsModifyProjectModalOpen(true);
-  };
-
-  //  Close ModifyProject Modal
-  const handleCloseModifyProjectModal = () => {
-    setIsModifyProjectModalOpen(false);
-  };
-
-  //  Open ModifyVerification Modal
-  const handleModifyVerificationModal = () => {
-    setIsModifyModalOpen(false);
-    setIsModifyProjectModalOpen(false);
-    setIsModifyVerificatioModalOpen(true);
-  };
-
-  //  Close ModifyVerification Modal
-  const handleCloseModifyVerificationModal = () => {
-    setIsModifyVerificatioModalOpen(false);
-  };
-
-  //  Open Download Modal
-  const handleDownloadModal = () => {
-    setIsDownloadModalOpen(true);
-  };
-
-  //  Close Download Modal
-  const handleCloseDownloadModal = () => {
-    setIsDownloadModalOpen(false);
+  const handleShowReviews = () => {
+    setIsVisibleReviews(!isVisibleReviews);
   };
 
   return (
@@ -117,7 +68,7 @@ const Hero: React.FC = () => {
           </button>
         </div>
 
-        <div className="bg-white rounded-2xl md:rounded-[20px] overflow-hidden shadow-1 w-full mb-12">
+        <div className="bg-white rounded-2xl md:rounded-[20px] overflow-hidden shadow-1 w-full">
           <div className="relative bg-[#0F0A19]">
             <Image
               src="/assets/workout-plan.svg"
@@ -132,10 +83,27 @@ const Hero: React.FC = () => {
             <h3 className="text-xl md:text-3xl font-medium text-[#0F0A19]">
               90 Days Workout Plan
             </h3>
+
+            <div className="grid grid-cols-2 gap-2 max-w-[300px] w-full mx-auto mt-8">
+              <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+                Save
+              </button>
+
+              <button
+                onClick={handleShowReviews}
+                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+              >
+                Reviews (4)
+              </button>
+            </div>
           </div>
         </div>
 
-        <MenuModal />
+        {isVisibleReviews && (
+          <div className="px-4 my-16">
+            <Reviews />
+          </div>
+        )}
 
         {/* Create Window Modals  */}
         {isModalOpen && (

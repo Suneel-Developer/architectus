@@ -9,7 +9,7 @@ interface DownloadModalProps {
 const UserForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => {
   const [email, setEmail] = useState<string>("");
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
   };
 

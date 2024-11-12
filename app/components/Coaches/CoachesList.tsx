@@ -7,7 +7,7 @@ import Reviews from "../Reviews";
 
 const coachesData = [
   {
-    id: 1,
+    id: 0,
     name: "John Doe",
     image: "/assets/coaches-1.png",
     specialties: ["Cross Fit", "Boxing"],
@@ -16,47 +16,48 @@ const coachesData = [
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
   },
-
   {
-    id: 2,
+    id: 1,
     name: "Esthera Jackson",
     image: "/assets/coaches-2.png",
     specialties: ["Circuit", "Cross Fit", "Boxing"],
-    profileLink: "/profile/john-doe",
+    profileLink: "/profile/esthera-jackson",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
   },
-
   {
-    id: 3,
+    id: 2,
     name: "Alexa Liras",
     image: "/assets/coaches-3.png",
     specialties: ["Strength", "Boxing"],
-    profileLink: "/profile/john-doe",
+    profileLink: "/profile/alexa-liras",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
   },
-
   {
-    id: 4,
+    id: 3,
     name: "Laurent Michael",
     image: "/assets/coaches-4.png",
-    specialties: ["Strength", "Strength", "Boxing"],
-    profileLink: "/profile/john-doe",
+    specialties: ["Strength", "Boxing"],
+    profileLink: "/profile/laurent-michael",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
   },
 ];
 
-const CoachesList: React.FC = () => {
-  const [visibleCoachId, setVisibleCoachId] = useState<number>(1);
+interface CoachesListProps {
+  showSingle?: boolean;
+}
+
+const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
+  const [visibleCoachId, setVisibleCoachId] = useState<number>(0);
   const [isShareModalVisible, setIsShareModalVisible] = useState<number | null>(
     null
   );
-  const [isVisibleReviews, setIsVisibleReviews] = useState<Boolean>(false);
+  const [isVisibleReviews, setIsVisibleReviews] = useState<boolean>(false);
 
   const handleToggleDetails = (id: number) => {
     setVisibleCoachId(visibleCoachId === id ? null : id);
@@ -74,10 +75,12 @@ const CoachesList: React.FC = () => {
     setIsVisibleReviews(!isVisibleReviews);
   };
 
+  const displayedCoaches = showSingle ? [coachesData[0]] : coachesData;
+
   return (
     <section className="px-5 pb-10 md:pb-20">
       <div className="max-w-[1180px] w-full mx-auto flex flex-col gap-6">
-        {coachesData.map((coach) => (
+        {displayedCoaches.map((coach) => (
           <div
             key={coach.id}
             className="shadow-2 bg-white rounded-2xl md:rounded-[20px] overflow-hidden"
@@ -271,12 +274,19 @@ const CoachesList: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className={`grid grid-cols-2 mx-auto gap-3 max-w-[300px] w-full ${isVisibleReviews ? "mb-10" : "mb-0"}`}>
+                  <div
+                    className={`grid grid-cols-2 mx-auto gap-3 max-w-[300px] w-full ${
+                      isVisibleReviews ? "mb-10" : "mb-0"
+                    }`}
+                  >
                     <button className="bg-[#3D2278] text-white rounded-[10px] h-11 w-full text-center px-3 text-sm md:text-base font-medium transition-opacity duration-300 hover:opacity-90">
                       Save
                     </button>
 
-                    <button onClick={handleShowReviews} className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
+                    <button
+                      onClick={handleShowReviews}
+                      className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+                    >
                       Reviews (4)
                     </button>
                   </div>

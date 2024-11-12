@@ -6,12 +6,14 @@ import VideoModal from "./VideoModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 import MenuModal from "../MenuModal";
+import Reviews from "../Reviews";
 
 const Hero: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
+  const [isVisibleReviews, setIsVisibleReviews] = useState<Boolean>(false);
 
   const handleOpenVideoModal = () => {
     setIsVideoModalOpen(true);
@@ -41,6 +43,10 @@ const Hero: React.FC = () => {
   const handleCloseVerificationModal = () => {
     setIsVerificationModalOpen(false);
     setIsModalOpen(false);
+  };
+
+  const handleShowReviews = () => {
+    setIsVisibleReviews(!isVisibleReviews);
   };
 
   return (
@@ -93,6 +99,13 @@ const Hero: React.FC = () => {
                 alt=""
                 className="w-full object-cover h-[280px]"
               />
+
+              <button
+                onClick={handleOpenVideoModal}
+                className="bg-[#3D2278] text-white text-base flex items-center justify-center transition-opacity duration-300 hover:opacity-90 w-12 h-12 rounded-full absolute top-0 left-0 right-0 bottom-0 m-auto"
+              >
+                <FaPlay />
+              </button>
             </div>
 
             <div className="p-5 md:p-7">
@@ -106,21 +119,27 @@ const Hero: React.FC = () => {
                 you, resting your hands on your shoulders.
               </p>
 
-              <div
-                className="flex items-center gap-[14px] cursor-pointer"
-                onClick={handleOpenVideoModal}
-              >
-                <button className="border-2 border-[#3D2278] w-10 h-10 rounded-full flex justify-center items-center">
-                  <FaPlay className="text-[#3D2278] text-base" />
+              <div className="flex flex-col gap-2">
+                <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+                  Save
                 </button>
 
-                <h3 className="font-medium text-sm md:text-base">
-                  Watch Video
-                </h3>
+                <button
+                  onClick={handleShowReviews}
+                  className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+                >
+                  Reviews (4)
+                </button>
               </div>
             </div>
           </div>
         </div>
+
+        {isVisibleReviews && (
+          <div className="px-4 my-16">
+            <Reviews />
+          </div>
+        )}
 
         <MenuModal />
 
@@ -136,6 +155,8 @@ const Hero: React.FC = () => {
         {isVerificationModalOpen && (
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
         )}
+
+        
       </div>
     </section>
   );
