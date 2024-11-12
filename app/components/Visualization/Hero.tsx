@@ -46,9 +46,9 @@ const Hero: React.FC = () => {
 
           <button
             className="bg-[#3D2278] text-white rounded-[10px] w-[156px] md:w-[200px] h-11 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
-            onClick={handleCreateClick}
+            
           >
-            Create
+            Body Scan
           </button>
         </div>
 
@@ -60,10 +60,10 @@ const Hero: React.FC = () => {
             Save
           </button>
 
-          <button
+          <button onClick={handleCreateClick}
             className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
           >
-            Body Scan
+            Create
           </button>
         </div>
 
