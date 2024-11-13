@@ -185,18 +185,24 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                     ></video>
                   </div>
                 </div>
-                <input
-                  type="text"
-                  placeholder="Title"
-                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 h-[52px] min-h-[52px] border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
-                />
-                <textarea
-                  placeholder="Enter Description"
-                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full h-[140px] min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
-                />
               </div>
             )}
           </div>
+
+          {videoSrc2 && (
+            <div className="w-full">
+              <input
+                type="text"
+                placeholder="Title"
+                className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 w-full mb-4 py-4 h-fit border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
+              />
+
+              <textarea
+                placeholder="Enter Description"
+                className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full h-fit min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
+              />
+            </div>
+          )}
 
           {/* Enter your Language  */}
           <input
