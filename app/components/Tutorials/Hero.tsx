@@ -139,8 +139,8 @@ const Hero: React.FC = () => {
           modules={[Pagination]}
           className="mySwiper h-full"
         >
-          {tutorialsdata.map((tutorial) => (
-            <SwiperSlide>
+          {tutorialsdata.map((tutorial, index) => (
+            <SwiperSlide key={index}>
               <div className="shadow-1 bg-white rounded-[20px] overflow-hidden w-full mb-14 md:mb-20">
                 <div className="relative w-full h-[210px]">
                   <img
