@@ -45,8 +45,8 @@ const Header: React.FC = () => {
               </svg>
             </div>
 
-            <h2 className="text-base font-bold text-[#3D2278] uppercase logo-font">
-              Workout <span className="text-[#0F0A1980]">Creator</span>
+            <h2 className="text-base font-bold text-[#3D2278] uppercase">
+              Workout <span className="text-[#0F0A1980] hidden md:inline-flex">Creator</span>
             </h2>
           </Link>
 
