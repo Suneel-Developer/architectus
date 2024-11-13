@@ -175,7 +175,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
 
             {videoSrc2 && (
               <div className="border-[#E7E7E7] flex-1 w-full h-[140px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
-                <div className="max-w-full md:max-w-[240px] w-full mx-auto h-full">
+                <div className="max-w-full md:max-w-[240px] w-full mx-auto h-[140px]">
                   <video
                     src={videoSrc2}
                     autoPlay
