@@ -174,16 +174,14 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             )}
 
             {videoSrc2 && (
-              <div className="flex flex-col gap-y-4">
-                <div className="border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
-                  <div className="max-w-full md:max-w-[240px] w-full mx-auto min-h-full">
-                    <video
-                      src={videoSrc2}
-                      autoPlay
-                      controls
-                      className="h-full w-full object-cover"
-                    ></video>
-                  </div>
+              <div className="border-[#E7E7E7] flex-1 w-full h-[140px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
+                <div className="max-w-full md:max-w-[240px] w-full mx-auto h-full">
+                  <video
+                    src={videoSrc2}
+                    autoPlay
+                    controls
+                    className="h-full w-full object-cover"
+                  ></video>
                 </div>
               </div>
             )}
