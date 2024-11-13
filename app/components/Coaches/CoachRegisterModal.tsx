@@ -121,9 +121,8 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             )}
 
             {videoSrc1 && (
-              <div className="flex flex-col gap-y-4">
-                <div className="border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
-                  <div className="max-w-full md:max-w-[240px] w-full mx-auto min-h-full">
+                <div className="border-[#E7E7E7] flex-1 w-full h-[160px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
+                  <div className="max-w-full md:max-w-[240px] w-full mx-auto h-[160px]">
                     <video
                       src={videoSrc1}
                       autoPlay
@@ -132,18 +131,23 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                     ></video>
                   </div>
                 </div>
-                <input
-                  type="text"
-                  placeholder="Title"
-                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 min-h-[52px] border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
-                />
-                <textarea
-                  placeholder="Enter Description"
-                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
-                />
-              </div>
             )}
           </div>
+
+          {videoSrc1 && (
+            <div className="w-full">
+              <input
+                type="text"
+                placeholder="Title"
+                className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 w-full mb-4 py-4 h-fit border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
+              />
+
+              <textarea
+                placeholder="Enter Description"
+                className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full h-fit min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
+              />
+            </div>
+          )}
 
           {/* Video Uploader 2 */}
           <div className="flex flex-col gap-4">
@@ -174,8 +178,8 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             )}
 
             {videoSrc2 && (
-              <div className="border-[#E7E7E7] flex-1 w-full h-[140px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
-                <div className="max-w-full md:max-w-[240px] w-full mx-auto h-[140px]">
+              <div className="border-[#E7E7E7] flex-1 w-full h-[160px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
+                <div className="max-w-full md:max-w-[240px] w-full mx-auto h-[160px]">
                   <video
                     src={videoSrc2}
                     autoPlay
