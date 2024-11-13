@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NavTabs from "../components/NavTabs";
-import Reviews from "../components/Reviews";
 import MenuModal from "../components/MenuModal";
 import CoachesList from "../components/Coaches/CoachesList";
 

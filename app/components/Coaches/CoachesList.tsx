@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { MdOutlineTextsms } from "react-icons/md";
+import { IoCallOutline } from "react-icons/io5";
+
 import ShareModal from "../Visualization/ShareModal";
 import Reviews from "../Reviews";
 
@@ -251,10 +254,10 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
                         className="shadow-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:border-[#3D2278]"
                       >
                         <Image
-                          src="/assets/icons/tiktok.svg"
-                          alt="tiktok"
-                          width={16}
-                          height={18}
+                          src="/assets/icons/youtube.svg"
+                          alt="youtube"
+                          width={20}
+                          height={14}
                           loading="lazy"
                         />
                       </Link>
@@ -263,13 +266,14 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
                         href="#"
                         className="shadow-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:border-[#3D2278]"
                       >
-                        <Image
-                          src="/assets/icons/youtube.svg"
-                          alt="youtube"
-                          width={20}
-                          height={14}
-                          loading="lazy"
-                        />
+                        <MdOutlineTextsms className="opacity-80" />
+                      </Link>
+
+                      <Link
+                        href="#"
+                        className="shadow-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:border-[#3D2278]"
+                      >
+                        <IoCallOutline className="opacity-80" />
                       </Link>
                     </div>
                   </div>

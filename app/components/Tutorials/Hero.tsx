@@ -10,6 +10,7 @@ import VideoModal from "./VideoModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 import Reviews from "../Reviews";
+import ShareModal from "../Visualization/ShareModal";
 
 const tutorialsdata = [
   {
@@ -50,6 +51,7 @@ const Hero: React.FC = () => {
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
   const [isVisibleReviews, setIsVisibleReviews] = useState<Boolean>(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
 
   const handleOpenVideoModal = (videoSrc: string) => {
     setCurrentVideoSrc(videoSrc);
@@ -87,6 +89,16 @@ const Hero: React.FC = () => {
     setIsVisibleReviews(!isVisibleReviews);
   };
 
+    //  Open Share Modal
+    const handleShareModal = () => {
+      setIsShareModalOpen(true);
+    };
+  
+    //  Close Share Modal
+    const handleCloseShareModal = () => {
+      setIsShareModalOpen(false);
+    };
+
   return (
     <section className="px-5 pb-10 md:pb-20">
       <div className="max-w-[1180px] w-full mx-auto">
@@ -109,12 +121,21 @@ const Hero: React.FC = () => {
             </p>
           </div>
 
-          <button
-            onClick={handleCreateClick}
-            className="bg-[#3D2278] text-white rounded-[10px] h-12 md:h-[52px] text-center px-3 max-w-[150px] w-full text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
-          >
-            Search
-          </button>
+          <div className="grid grid-cols-2 max-w-[300px] w-full gap-3">
+            <button
+              onClick={handleCreateClick}
+              className="bg-[#3D2278] text-white rounded-[10px]  h-12 text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+            >
+              Search
+            </button>
+
+            <button
+              onClick={handleShareModal}
+              className="border-2 border-[#3D2278] rounded-[10px] h-12 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+            >
+              Share
+            </button>
+          </div>
         </div>
 
         <Swiper
@@ -209,6 +230,9 @@ const Hero: React.FC = () => {
         {isVerificationModalOpen && (
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
         )}
+
+         {/* Share Modal */}
+         {isShareModalOpen && <ShareModal onClose={handleCloseShareModal} />}
       </div>
     </section>
   );

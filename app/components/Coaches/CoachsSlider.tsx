@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { MdOutlineTextsms } from "react-icons/md";
+import { IoCallOutline } from "react-icons/io5";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
@@ -189,18 +192,6 @@ const CoachesSlider: React.FC = () => {
                             />
                           </Link>
 
-                          <Link
-                            href="#"
-                            className="shadow-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:border-[#3D2278]"
-                          >
-                            <Image
-                              src="/assets/icons/tiktok.svg"
-                              alt="tiktok"
-                              width={16}
-                              height={18}
-                              loading="lazy"
-                            />
-                          </Link>
 
                           <Link
                             href="#"
@@ -214,6 +205,19 @@ const CoachesSlider: React.FC = () => {
                               loading="lazy"
                             />
                           </Link>
+                          <Link
+                        href="#"
+                        className="shadow-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:border-[#3D2278]"
+                      >
+                        <MdOutlineTextsms className="opacity-80" />
+                      </Link>
+
+                      <Link
+                        href="#"
+                        className="shadow-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:border-[#3D2278]"
+                      >
+                        <IoCallOutline className="opacity-80" />
+                      </Link>
                         </div>
                       </div>
 

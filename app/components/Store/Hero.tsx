@@ -8,11 +8,13 @@ import ProductSlider from "./ProductSlider";
 // import UploadStoreModal from "./UploadStoreModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
+import ShareModal from "../Visualization/ShareModal";
 
 const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
+    const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
   // const [isSupplierLoginModalOpen, setIsSupplierLoginModalOpen] =
   //   useState<boolean>(false);
   // const [isSupplierRegisterModalOpen, setIsSupplierRegisterModalOpen] =
@@ -90,6 +92,16 @@ const Hero: React.FC = () => {
     setIsModalOpen(false);
   };
 
+    //  Open Share Modal
+    const handleShareModal = () => {
+      setIsShareModalOpen(true);
+    };
+  
+    //  Close Share Modal
+    const handleCloseShareModal = () => {
+      setIsShareModalOpen(false);
+    };
+
   return (
     <section className="px-5">
       <div className="max-w-[1180px] w-full mx-auto">
@@ -112,12 +124,21 @@ const Hero: React.FC = () => {
             </p>
           </div>
 
-          <button
-            onClick={handleCreateClick}
-            className="bg-[#3D2278] text-white rounded-[10px] w-full max-w-[150px] h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
-          >
-            Search
-          </button>
+          <div className="grid grid-cols-2 max-w-[300px] w-full gap-3">
+            <button
+              onClick={handleCreateClick}
+              className="bg-[#3D2278] text-white rounded-[10px]  h-12 text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+            >
+              Search
+            </button>
+
+            <button
+              onClick={handleShareModal}
+              className="border-2 border-[#3D2278] rounded-[10px] h-12 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+            >
+              Share
+            </button>
+          </div>
         </div>
 
         <ProductSlider />
@@ -157,6 +178,9 @@ const Hero: React.FC = () => {
         {isVerificationModalOpen && (
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
         )}
+
+         {/* Share Modal */}
+         {isShareModalOpen && <ShareModal onClose={handleCloseShareModal} />}
       </div>
     </section>
   );

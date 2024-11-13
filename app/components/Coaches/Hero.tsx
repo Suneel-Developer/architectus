@@ -11,12 +11,7 @@ const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
-  const [isCoachLoginModalOpen, setIsCoachLoginModalOpen] =
-    useState<boolean>(false);
-  const [isCoachRegisterModalOpen, setIsCoachRegisterModalOpen] =
-    useState<boolean>(false);
-  const [isCoachForgotPasswordModalOpen, setIsCoachForgotPasswordModalOpen] =
-    useState<boolean>(false);
+
 
   // Open Create modal
   const handleCreateClick = () => {
@@ -40,40 +35,7 @@ const Hero: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  //   Coach Login Modal
-  const handleCoachLoginModalClick = () => {
-    setIsCoachRegisterModalOpen(false);
-    setIsCoachLoginModalOpen(true);
-  };
-
-  //  Close Coach Login Modal
-  const handleCloseCoachLoginModal = () => {
-    setIsCoachLoginModalOpen(false);
-  };
-
-  //  Open Coach Register Modal
-  const handleCoachRegisterModal = () => {
-    setIsCoachLoginModalOpen(false);
-    setIsCoachRegisterModalOpen(true);
-  };
-
-  //  Close Coach Register Modal
-  const handleCloseCoachRegisterModal = () => {
-    setIsCoachRegisterModalOpen(false);
-  };
-
-  //  Open Coach Forgot password Modal
-  const handleCoachForgotPasswordModal = () => {
-    setIsCoachLoginModalOpen(false);
-    setIsCoachRegisterModalOpen(false);
-    setIsCoachForgotPasswordModalOpen(true);
-  };
-
-  //  Close Coach Forgot password  Modal
-  const handleCloseCoachForgotPasswordModal = () => {
-    setIsCoachForgotPasswordModalOpen(false);
-  };
-
+  
   return (
     <section className="px-5">
       <div className="max-w-[1180px] w-full mx-auto">
@@ -116,29 +78,7 @@ const Hero: React.FC = () => {
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
         )}
 
-        {/* Coach Login Windows Render  */}
-        {isCoachLoginModalOpen && (
-          <CoachLoginModal
-            onClose={handleCloseCoachLoginModal}
-            onSignup={handleCoachRegisterModal}
-            onForgotPassword={handleCoachForgotPasswordModal}
-          />
-        )}
-
-        {/* Coach Register Windows Render  */}
-        {isCoachRegisterModalOpen && (
-          <CoachRegisterModal
-            onClose={handleCloseCoachRegisterModal}
-            onLogin={handleCoachLoginModalClick}
-          />
-        )}
-
-        {/* Coach Forgot passowr Windows Render  */}
-        {isCoachForgotPasswordModalOpen && (
-          <CoachForgotPasswordModal
-            onClose={handleCloseCoachForgotPasswordModal}
-          />
-        )}
+        
       </div>
     </section>
   );

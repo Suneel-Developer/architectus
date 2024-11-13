@@ -2,20 +2,19 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import ShareModal from "./Visualization/ShareModal";
 import UserLoginModal from "./UserForm/UserLoginModal";
 import UserRegisterModal from "./UserForm/UserRegisterModal";
 import UserForgotPasswordModal from "./UserForm/UserForgotPasswordModal";
 import SupportModal from "./SupportModal";
-import CreateVisualisationModal from "./Visualization/CreateVisualisationModal";
+import CoachLoginModal from "./Coaches/CoachLoginModal";
+import CoachRegisterModal from "./Coaches/CoachRegisterModal";
+import CoachForgotPasswordModal from "./Coaches/CoachForgotPasswordModal";
+import FavoriteModal from "./FavoritesModal";
 import VerificationLoadingModal from "./Visualization/VerificationLoadingModal";
 
 const MenuModal = () => {
   const [isOpenMenuModal, setIsOpenMenuModal] = useState<boolean>(false);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isVerificationModalOpen, setIsVerificationModalOpen] =
-    useState<boolean>(false);
-  const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
+  useState<boolean>(false);
   const [isUserLoginModalOpen, setIsUserLoginModalOpen] =
     useState<boolean>(false);
   const [isUserRegisterModalOpen, setIsUserRegisterModalOpen] =
@@ -23,43 +22,21 @@ const MenuModal = () => {
   const [isUserForgotPasswordModalOpen, setIsUserForgotPasswordModalOpen] =
     useState<boolean>(false);
   const [isSupportModalOpen, setIsSupportModalOpen] = useState<boolean>(false);
+  const [isCoachLoginModalOpen, setIsCoachLoginModalOpen] =
+    useState<boolean>(false);
+  const [isCoachRegisterModalOpen, setIsCoachRegisterModalOpen] =
+    useState<boolean>(false);
+  const [isCoachForgotPasswordModalOpen, setIsCoachForgotPasswordModalOpen] =
+    useState<boolean>(false);
+  const [isFavoritesModalOpen, setIsFavoritesModalOpen] =
+    useState<boolean>(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] =
+    useState<boolean>(false);
   const router = useRouter();
 
   // Open Menu Modal
   const handleOpenMenuModal = () => {
     setIsOpenMenuModal(!isOpenMenuModal);
-  };
-
-  // Open Create modal
-  const handleCreateClick = () => {
-    setIsModalOpen(true);
-  };
-
-  //   Close Create modal
-  const handleCloseCreateVisualisationModal = () => {
-    setIsModalOpen(false);
-  };
-
-  //   Open VisualisationVerification Modal
-  const handleVerificationCreateClick = () => {
-    setIsModalOpen(false);
-    setIsVerificationModalOpen(true);
-  };
-
-  //  Close VisualisationVerification Modal
-  const handleCloseVerificationModal = () => {
-    setIsVerificationModalOpen(false);
-    setIsModalOpen(false);
-  };
-
-  //  Open Share Modal
-  const handleShareModal = () => {
-    setIsShareModalOpen(true);
-  };
-
-  //  Close Share Modal
-  const handleCloseShareModal = () => {
-    setIsShareModalOpen(false);
   };
 
   //  Open UserLogin Modal
@@ -104,6 +81,61 @@ const MenuModal = () => {
   //  Close Support Modal
   const handleCloseSupportModal = () => {
     setIsSupportModalOpen(false);
+  };
+
+  //   Coach Login Modal
+  const handleCoachLoginModalClick = () => {
+    setIsCoachRegisterModalOpen(false);
+    setIsCoachLoginModalOpen(true);
+  };
+
+  //  Close Coach Login Modal
+  const handleCloseCoachLoginModal = () => {
+    setIsCoachLoginModalOpen(false);
+  };
+
+  //  Open Coach Register Modal
+  const handleCoachRegisterModal = () => {
+    setIsCoachLoginModalOpen(false);
+    setIsCoachRegisterModalOpen(true);
+  };
+
+  //  Close Coach Register Modal
+  const handleCloseCoachRegisterModal = () => {
+    setIsCoachRegisterModalOpen(false);
+  };
+
+  //  Open Coach Forgot password Modal
+  const handleCoachForgotPasswordModal = () => {
+    setIsCoachLoginModalOpen(false);
+    setIsCoachRegisterModalOpen(false);
+    setIsCoachForgotPasswordModalOpen(true);
+  };
+
+  //  Close Coach Forgot password  Modal
+  const handleCloseCoachForgotPasswordModal = () => {
+    setIsCoachForgotPasswordModalOpen(false);
+  };
+
+  //  Open Favorites Modal
+  const handleFavoritesModal = () => {
+    setIsFavoritesModalOpen(true);
+  };
+
+  //  Close Favorites Modal
+  const handleCloseFavoritesModal = () => {
+    setIsFavoritesModalOpen(false);
+  };
+
+  //  Open Verification Modal
+  const handleVerificationModal = () => {
+    setIsFavoritesModalOpen(false);
+    setIsVerificationModalOpen(true);
+  };
+
+  //  Close Verification Modal
+  const handleCloseVerificationModal = () => {
+    setIsVerificationModalOpen(false);
   };
 
   useEffect(() => {
@@ -182,17 +214,10 @@ const MenuModal = () => {
 
             <div className="flex flex-col items-center gap-2 mt-14">
               <button
-                onClick={handleCreateClick}
+                onClick={handleCoachLoginModalClick}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
                 Create
-              </button>
-
-              <button
-                onClick={handleShareModal}
-                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-              >
-                Share
               </button>
 
               <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
@@ -200,14 +225,14 @@ const MenuModal = () => {
               </button>
 
               <button
-                onClick={() => router.push("/favorites")}
+                onClick={() => router.push("/reviews")}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
                 Reviews
               </button>
 
               <button
-                onClick={() => router.push("/favorites")}
+                onClick={handleFavoritesModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
                 Favorites
@@ -233,13 +258,6 @@ const MenuModal = () => {
               </button>
 
               <button
-                onClick={handleUserLoginModal}
-                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-              >
-                Login
-              </button>
-
-              <button
                 onClick={handleUserRegisterModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
@@ -254,21 +272,29 @@ const MenuModal = () => {
         </div>
       )}
 
-      {/* Create Window Windows  */}
-      {isModalOpen && (
-        <CreateVisualisationModal
-          onClose={handleCloseCreateVisualisationModal}
-          onCreate={handleVerificationCreateClick}
+      {/* Coach Login Windows Render  */}
+      {isCoachLoginModalOpen && (
+        <CoachLoginModal
+          onClose={handleCloseCoachLoginModal}
+          onSignup={handleCoachRegisterModal}
+          onForgotPassword={handleCoachForgotPasswordModal}
         />
       )}
 
-      {/* Create Verification Windows  */}
-      {isVerificationModalOpen && (
-        <VerificationLoadingModal onClose={handleCloseVerificationModal} />
+      {/* Coach Register Windows Render  */}
+      {isCoachRegisterModalOpen && (
+        <CoachRegisterModal
+          onClose={handleCloseCoachRegisterModal}
+          onLogin={handleCoachLoginModalClick}
+        />
       )}
 
-      {/* Share Modal */}
-      {isShareModalOpen && <ShareModal onClose={handleCloseShareModal} />}
+      {/* Coach Forgot passowr Windows Render  */}
+      {isCoachForgotPasswordModalOpen && (
+        <CoachForgotPasswordModal
+          onClose={handleCloseCoachForgotPasswordModal}
+        />
+      )}
 
       {/* User Login Windows Modal  */}
       {isUserLoginModalOpen && (
@@ -294,6 +320,19 @@ const MenuModal = () => {
 
       {/* Support Windows Modal  */}
       {isSupportModalOpen && <SupportModal onClose={handleCloseSupportModal} />}
+
+      {/* Favorutes Windows Modal  */}
+      {isFavoritesModalOpen && (
+        <FavoriteModal
+          onClose={handleFavoritesModal}
+          onCreate={handleVerificationModal}
+        />
+      )}
+
+      {/* Favorutes Windows Modal  */}
+      {isVerificationModalOpen && (
+        <VerificationLoadingModal onClose={handleCloseVerificationModal} />
+      )}
     </div>
   );
 };

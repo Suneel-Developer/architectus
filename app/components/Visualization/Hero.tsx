@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import CreateVisualisationModal from "./CreateVisualisationModal";
 import VerificationLoadingModal from "./VerificationLoadingModal";
 import Image from "next/image";
+import ShareModal from "./ShareModal";
 
 const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
 
   // Open Create modal
   const handleCreateClick = () => {
@@ -31,6 +33,16 @@ const Hero: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  //  Open Share Modal
+  const handleShareModal = () => {
+    setIsShareModalOpen(true);
+  };
+
+  //  Close Share Modal
+  const handleCloseShareModal = () => {
+    setIsShareModalOpen(false);
+  };
+
   return (
     <section className="px-5 pb-10 md:pb-20">
       <div className="max-w-[1180px] w-full mx-auto">
@@ -50,9 +62,18 @@ const Hero: React.FC = () => {
             </p>
           </div>
 
-          <button className="bg-[#3D2278] text-white rounded-[10px] w-[156px] md:w-[200px] h-11 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-            Body Scan
-          </button>
+          <div className="grid grid-cols-2 max-w-[300px] w-full gap-3">
+            <button className="bg-[#3D2278] text-white rounded-[10px]  h-12 text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+              Body Scan
+            </button>
+
+            <button
+              onClick={handleShareModal}
+              className="border-2 border-[#3D2278] rounded-[10px] h-12 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+            >
+              Share
+            </button>
+          </div>
         </div>
 
         {/* Big Body Image  */}
@@ -88,6 +109,9 @@ const Hero: React.FC = () => {
         {isVerificationModalOpen && (
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
         )}
+
+        {/* Share Modal */}
+        {isShareModalOpen && <ShareModal onClose={handleCloseShareModal} />}
       </div>
     </section>
   );
