@@ -135,7 +135,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                 <input
                   type="text"
                   placeholder="Title"
-                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit"
+                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 min-h-[52px] border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
                 />
                 <textarea
                   placeholder="Enter Description"
@@ -188,7 +188,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                 <input
                   type="text"
                   placeholder="Title"
-                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit"
+                  className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 min-h-[52px] border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit"
                 />
                 <textarea
                   placeholder="Enter Description"
