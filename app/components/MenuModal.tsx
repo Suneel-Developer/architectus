@@ -1,23 +1,16 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import ModifyModal from "./Visualization/ModifyModal";
-import ModifyProjectModal from "./Visualization/ModifyProjectModal";
-import ModifyVerificatioModal from "./Visualization/ModifyVerificatioModal";
+import { useRouter } from "next/navigation";
 import ShareModal from "./Visualization/ShareModal";
 import UserLoginModal from "./UserForm/UserLoginModal";
 import UserRegisterModal from "./UserForm/UserRegisterModal";
 import UserForgotPasswordModal from "./UserForm/UserForgotPasswordModal";
 import SupportModal from "./SupportModal";
+import CaptchaModal from "./CaptchaModal";
 
 const MenuModal = () => {
   const [isOpenMenuModal, setIsOpenMenuModal] = useState<Boolean>(false);
-  const [isModifyModalOpen, setIsModifyModalOpen] = useState<boolean>(false);
-  const [isModifyProjectModalOpen, setIsModifyProjectModalOpen] =
-    useState<boolean>(false);
-  const [isModifyVerificatioModalOpen, setIsModifyVerificatioModalOpen] =
-    useState<boolean>(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
   const [isUserLoginModalOpen, setIsUserLoginModalOpen] =
     useState<boolean>(false);
@@ -26,46 +19,11 @@ const MenuModal = () => {
   const [isUserForgotPasswordModalOpen, setIsUserForgotPasswordModalOpen] =
     useState<boolean>(false);
   const [isSupportModalOpen, setIsSupportModalOpen] = useState<boolean>(false);
+  const [isCaptchaModalOpen, setIsCaptchaModalOpen] = useState<boolean>(false);
   const router = useRouter();
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-  const isWorkOutOrHomePage = pathname === '/plan' || pathname === '/';
 
   const handleOpenMenuModal = () => {
     setIsOpenMenuModal(!isOpenMenuModal);
-  };
-
-  //   Modify Modal
-  const handleModifyModalClick = () => {
-    setIsModifyModalOpen(true);
-  };
-
-  //  Close Modify Modal
-  const handleCloseModifyModal = () => {
-    setIsModifyModalOpen(false);
-  };
-
-  //  Open Modify Project Modal
-  const handleModifyProjectModal = () => {
-    setIsModifyModalOpen(false);
-    setIsModifyProjectModalOpen(true);
-  };
-
-  //  Close ModifyProject Modal
-  const handleCloseModifyProjectModal = () => {
-    setIsModifyProjectModalOpen(false);
-  };
-
-  //  Open ModifyVerification Modal
-  const handleModifyVerificationModal = () => {
-    setIsModifyModalOpen(false);
-    setIsModifyProjectModalOpen(false);
-    setIsModifyVerificatioModalOpen(true);
-  };
-
-  //  Close ModifyVerification Modal
-  const handleCloseModifyVerificationModal = () => {
-    setIsModifyVerificatioModalOpen(false);
   };
 
   //  Open Share Modal
@@ -122,6 +80,16 @@ const MenuModal = () => {
     setIsSupportModalOpen(false);
   };
 
+    //  Open handleCaptchaModal Modal
+    const handleCaptchaModal = () => {
+      setIsCaptchaModalOpen(true);
+    };
+  
+    //  Close handleCaptchaModal Modal
+    const handleCloseCaptchaModal = () => {
+      setIsCaptchaModalOpen(false);
+    };
+
   useEffect(() => {
     if (isOpenMenuModal) {
       document.body.classList.add("no-scroll");
@@ -140,14 +108,41 @@ const MenuModal = () => {
       <div className="flex justify-center">
         <button
           onClick={handleOpenMenuModal}
-          className="bg-[#3D2278] text-white rounded-full w-[50px] h-[50px] text-2xl flex items-center justify-center transition-opacity duration-300 hover:opacity-90"
+          className="bg-[#3D2278] text-white rounded-full w-[50px] h-[50px] flex items-center justify-center transition-opacity duration-300 hover:opacity-90"
         >
-          <Image
-            src="/assets/icon.svg"
-            alt="brand icon"
-            width={24}
-            height={33}
-          />
+          <svg
+            width="21"
+            height="26"
+            viewBox="0 0 21 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.07422 11.5173L5.88001 6.6596L11.2239 6.05469C11.9753 6.37355 12.3511 6.53298 12.3511 6.53298C13.903 10.0388 14.6789 11.7917 14.6789 11.7917L18.9995 9.60906"
+              stroke="#ffffff"
+              stroke-width="2.27753"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M2 24.001L6.37023 19.4304L8.37757 13.2207L10.3544 13.616L15.2417 17.6227L9.5641 21.2614"
+              stroke="#ffffff"
+              stroke-width="2.58811"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.4653 6.46484L9.28516 13.7392"
+              stroke="#ffffff"
+              stroke-width="4.65859"
+            />
+            <path
+              d="M14.6631 2.1797C14.6631 3.07475 13.895 3.84177 12.8951 3.84177C11.8952 3.84177 11.127 3.07475 11.127 2.1797C11.127 1.28464 11.8952 0.517622 12.8951 0.517622C13.895 0.517622 14.6631 1.28464 14.6631 2.1797Z"
+              fill="#ffffff"
+              stroke="#ffffff"
+              stroke-width="1.03524"
+            />
+          </svg>
         </button>
       </div>
       {isOpenMenuModal && (
@@ -169,21 +164,6 @@ const MenuModal = () => {
             />
 
             <div className="flex flex-col items-center gap-2 mt-14">
-              {!isWorkOutOrHomePage && (
-                <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
-                  Body Scan
-                </button>
-              )}
-
-              {!isWorkOutOrHomePage && (
-                <button
-                  onClick={handleModifyModalClick}
-                  className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-                >
-                  Modify
-                </button>
-              )}
-
               <button
                 onClick={handleShareModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
@@ -218,25 +198,16 @@ const MenuModal = () => {
               >
                 Support
               </button>
+
+              <button
+                onClick={handleCaptchaModal}
+                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+              >
+                Captcha
+              </button>
             </div>
           </div>
         </div>
-      )}
-      {/* 1. Modify Modal 2. ModifyProjectModal 3. ModifyVerificatioModal ======== Windows Modals */}
-      {isModifyModalOpen && (
-        <ModifyModal
-          onClose={handleCloseModifyModal}
-          onCreate={handleModifyProjectModal}
-        />
-      )}
-      {isModifyProjectModalOpen && (
-        <ModifyProjectModal
-          onClose={handleCloseModifyProjectModal}
-          onCreate={handleModifyVerificationModal}
-        />
-      )}
-      {isModifyVerificatioModalOpen && (
-        <ModifyVerificatioModal onClose={handleCloseModifyVerificationModal} />
       )}
 
       {/* Share Modal */}
@@ -263,6 +234,7 @@ const MenuModal = () => {
 
       {/* Support Modal  */}
       {isSupportModalOpen && <SupportModal onClose={handleCloseSupportModal} />}
+      {isCaptchaModalOpen && <CaptchaModal onClose={handleCloseCaptchaModal} />}
     </div>
   );
 };

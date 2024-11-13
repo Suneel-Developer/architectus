@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NavTabs = () => {
   const pathname = usePathname();
+  const tabRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const getTabClassName = (path: string) => {
     return `tab-btn py-3 px-10 text-center w-[140px] md:w-[150px] rounded-[30px] text-base font-medium border-2 ${
@@ -14,25 +15,65 @@ const NavTabs = () => {
     }`;
   };
 
+  useEffect(() => {
+    if (pathname && tabRefs.current[pathname]) {
+      tabRefs.current[pathname]?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [pathname]);
+
   return (
     <section className="max-w-[1180px] w-full pb-10 md:pb-20 mx-auto flex gap-5 pt-[30px] md:pt-[50px] overflow-x-scroll lg:overflow-x-visible tabs-scrollbar relative">
-      <Link href="/" className={`ml-5 lg:ml-0 ${getTabClassName("/")}`}>
+      <Link
+        href="/"
+        ref={(el) => {
+          tabRefs.current["/"] = el;
+        }}
+        className={`ml-5 lg:ml-0 ${getTabClassName("/")}`}
+      >
         Body
       </Link>
 
-      <Link href="/plan" className={getTabClassName("/plan")}>
+      <Link
+        href="/plan"
+        ref={(el) => {
+          tabRefs.current["/plan"] = el;
+        }}
+        className={getTabClassName("/plan")}
+      >
         Sports
       </Link>
 
-      <Link href="/coaches" className={getTabClassName("/coaches")}>
+      <Link
+        href="/coaches"
+        ref={(el) => {
+          tabRefs.current["/coaches"] = el;
+        }}
+        className={getTabClassName("/coaches")}
+      >
         Coaches
       </Link>
 
-      <Link href="/tutorials" className={getTabClassName("/tutorials")}>
+      <Link
+        href="/tutorials"
+        ref={(el) => {
+          tabRefs.current["/tutorials"] = el;
+        }}
+        className={getTabClassName("/tutorials")}
+      >
         Tutorials
       </Link>
 
-      <Link href="/store" className={`mr-5 lg:mr-0 ${getTabClassName("/store")}`}>
+      <Link
+        href="/store"
+        ref={(el) => {
+          tabRefs.current["/store"] = el;
+        }}
+        className={`mr-5 lg:mr-0 ${getTabClassName("/store")}`}
+      >
         Store
       </Link>
     </section>

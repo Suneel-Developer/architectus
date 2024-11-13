@@ -8,7 +8,6 @@ import ForgotPasswordModal from "./ForgotPasswordModal";
 import UploadStoreModal from "./UploadStoreModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
-import MenuModal from "../MenuModal";
 
 const Hero: React.FC = () => {
   // const [isSupplierLoginModalOpen, setIsSupplierLoginModalOpen] =
@@ -125,7 +124,6 @@ const Hero: React.FC = () => {
 
         <ProductSlider />
 
-        <MenuModal />
 
         {/* {isSupplierLoginModalOpen && (
           <SupplierLoginModal

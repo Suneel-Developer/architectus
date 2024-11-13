@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import CreateVisualisationModal from "./CreateVisualisationModal";
 import VerificationLoadingModal from "./VerificationLoadingModal";
-import MenuModal from "../MenuModal";
 import Image from "next/image";
 
 const Hero: React.FC = () => {
@@ -59,7 +58,14 @@ const Hero: React.FC = () => {
         {/* Big Body Image  */}
         <div className="bg-[url('/assets/body-banner.jfif')] h-[280px] md:h-[500px] w-full rounded-2xl md:rounded-[20px] bg-cover bg-center mb-5 md:mb-12"></div>
 
-        <div className="grid grid-cols-2 gap-3 max-w-[300px] w-full mx-auto mb-10">
+        <div className="flex items-center justify-center gap-3 mb-10">
+          <div className="w-[45px] h-[15px] rounded-[30px] bg-[#3d2278] cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] rounded-full bg-[#3d227833] cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] rounded-full bg-[#3d227833] cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] rounded-full bg-[#3d227833] cursor-pointer"></div>
+          <div className="w-[15px] h-[15px] rounded-full bg-[#3d227833] cursor-pointer"></div>
+        </div>
+        <div className="grid grid-cols-2 gap-3 max-w-[300px] w-full mx-auto">
           <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
             Save
           </button>
@@ -71,10 +77,6 @@ const Hero: React.FC = () => {
             Create
           </button>
         </div>
-
-        <MenuModal />
-
-        {/* Windows Modals Imports  */}
 
         {/* Create Window Modals  */}
         {isModalOpen && (

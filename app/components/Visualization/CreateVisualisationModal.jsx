@@ -70,7 +70,9 @@ const CreateVisualisationModal = ({ onClose, onCreate }) => {
         </h1>
 
         <p className="text-sm text-[#0F0A19B2]">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit Vivamus.
+        Please describe in as much detail as possible what you intend to create, update, or modify.
+
+
         </p>
 
         <Image

@@ -70,7 +70,8 @@ const SupportModal = ({ onClose }) => {
         </h1>
 
         <p className="text-sm text-[#0F0A19B2]">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit Vivamus.
+          Please describe in as much detail as possible what you intend to
+          create, update, or modify.
         </p>
 
         <Image
@@ -129,9 +130,7 @@ const SupportModal = ({ onClose }) => {
           </div>
 
           <div className="flex flex-col items-center gap-y-4">
-            <button
-              className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
-            >
+            <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
               Create
             </button>
 

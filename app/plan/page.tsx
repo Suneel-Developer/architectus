@@ -9,12 +9,10 @@ const Plan: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="workoutbg bg-no-repeat bg-center bg-cover relative">
+      <main className="workoutbg bg-no-repeat bg-center bg-cover relative pb-10 md:pb-20">
         <NavTabs />
         <Hero />
-        <div className="mb-10 md:mb-20">
-          <MenuModal />
-        </div>
+        <MenuModal />
       </main>
       <Footer />
     </>
