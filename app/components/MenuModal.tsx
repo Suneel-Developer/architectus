@@ -7,10 +7,14 @@ import UserLoginModal from "./UserForm/UserLoginModal";
 import UserRegisterModal from "./UserForm/UserRegisterModal";
 import UserForgotPasswordModal from "./UserForm/UserForgotPasswordModal";
 import SupportModal from "./SupportModal";
-import CaptchaModal from "./CaptchaModal";
+import CreateVisualisationModal from "./Visualization/CreateVisualisationModal";
+import VerificationLoadingModal from "./Visualization/VerificationLoadingModal";
 
 const MenuModal = () => {
-  const [isOpenMenuModal, setIsOpenMenuModal] = useState<Boolean>(false);
+  const [isOpenMenuModal, setIsOpenMenuModal] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] =
+    useState<boolean>(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
   const [isUserLoginModalOpen, setIsUserLoginModalOpen] =
     useState<boolean>(false);
@@ -19,11 +23,33 @@ const MenuModal = () => {
   const [isUserForgotPasswordModalOpen, setIsUserForgotPasswordModalOpen] =
     useState<boolean>(false);
   const [isSupportModalOpen, setIsSupportModalOpen] = useState<boolean>(false);
-  const [isCaptchaModalOpen, setIsCaptchaModalOpen] = useState<boolean>(false);
   const router = useRouter();
 
+  // Open Menu Modal
   const handleOpenMenuModal = () => {
     setIsOpenMenuModal(!isOpenMenuModal);
+  };
+
+  // Open Create modal
+  const handleCreateClick = () => {
+    setIsModalOpen(true);
+  };
+
+  //   Close Create modal
+  const handleCloseCreateVisualisationModal = () => {
+    setIsModalOpen(false);
+  };
+
+  //   Open VisualisationVerification Modal
+  const handleVerificationCreateClick = () => {
+    setIsModalOpen(false);
+    setIsVerificationModalOpen(true);
+  };
+
+  //  Close VisualisationVerification Modal
+  const handleCloseVerificationModal = () => {
+    setIsVerificationModalOpen(false);
+    setIsModalOpen(false);
   };
 
   //  Open Share Modal
@@ -80,16 +106,6 @@ const MenuModal = () => {
     setIsSupportModalOpen(false);
   };
 
-    //  Open handleCaptchaModal Modal
-    const handleCaptchaModal = () => {
-      setIsCaptchaModalOpen(true);
-    };
-  
-    //  Close handleCaptchaModal Modal
-    const handleCloseCaptchaModal = () => {
-      setIsCaptchaModalOpen(false);
-    };
-
   useEffect(() => {
     if (isOpenMenuModal) {
       document.body.classList.add("no-scroll");
@@ -97,7 +113,6 @@ const MenuModal = () => {
       document.body.classList.remove("no-scroll");
     }
 
-    // Clean up to ensure the class is removed when the component unmounts
     return () => {
       document.body.classList.remove("no-scroll");
     };
@@ -145,6 +160,8 @@ const MenuModal = () => {
           </svg>
         </button>
       </div>
+
+      {/* Menu Windows  */}
       {isOpenMenuModal && (
         <div className="fixed inset-0 z-50 flex justify-end pl-5">
           <div
@@ -165,10 +182,28 @@ const MenuModal = () => {
 
             <div className="flex flex-col items-center gap-2 mt-14">
               <button
+                onClick={handleCreateClick}
+                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+              >
+                Create
+              </button>
+
+              <button
                 onClick={handleShareModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
                 Share
+              </button>
+
+              <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
+                Posts
+              </button>
+
+              <button
+                onClick={() => router.push("/favorites")}
+                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+              >
+                Reviews
               </button>
 
               <button
@@ -176,6 +211,25 @@ const MenuModal = () => {
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
                 Favorites
+              </button>
+
+              <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
+                Calls
+              </button>
+
+              <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
+                Messages
+              </button>
+
+              <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
+                Settings
+              </button>
+
+              <button
+                onClick={handleSupportModal}
+                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+              >
+                Support
               </button>
 
               <button
@@ -192,27 +246,31 @@ const MenuModal = () => {
                 Register
               </button>
 
-              <button
-                onClick={handleSupportModal}
-                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-              >
-                Support
-              </button>
-
-              <button
-                onClick={handleCaptchaModal}
-                className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
-              >
-                Captcha
+              <button className="bg-red-700 rounded-[10px] h-11 w-full text-center px-3 text-white text-sm md:text-base font-medium transition-colors duration-300 hover:bg-opacity-80">
+                Log Out
               </button>
             </div>
           </div>
         </div>
       )}
 
+      {/* Create Window Windows  */}
+      {isModalOpen && (
+        <CreateVisualisationModal
+          onClose={handleCloseCreateVisualisationModal}
+          onCreate={handleVerificationCreateClick}
+        />
+      )}
+
+      {/* Create Verification Windows  */}
+      {isVerificationModalOpen && (
+        <VerificationLoadingModal onClose={handleCloseVerificationModal} />
+      )}
+
       {/* Share Modal */}
       {isShareModalOpen && <ShareModal onClose={handleCloseShareModal} />}
 
+      {/* User Login Windows Modal  */}
       {isUserLoginModalOpen && (
         <UserLoginModal
           onClose={handleCloseUserLoginModal}
@@ -221,6 +279,7 @@ const MenuModal = () => {
         />
       )}
 
+      {/* User Register Windows Modal  */}
       {isUserRegisterModalOpen && (
         <UserRegisterModal
           onClose={handleCloseUserRegisterModal}
@@ -228,13 +287,13 @@ const MenuModal = () => {
         />
       )}
 
+      {/* User Forgot Password Windos Modal  */}
       {isUserForgotPasswordModalOpen && (
         <UserForgotPasswordModal onClose={handleCloseUserForgotPasswordModal} />
       )}
 
-      {/* Support Modal  */}
+      {/* Support Windows Modal  */}
       {isSupportModalOpen && <SupportModal onClose={handleCloseSupportModal} />}
-      {isCaptchaModalOpen && <CaptchaModal onClose={handleCloseCaptchaModal} />}
     </div>
   );
 };

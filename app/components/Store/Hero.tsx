@@ -2,14 +2,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ProductSlider from "./ProductSlider";
-import SupplierLoginModal from "./SupplierLoginModal";
-import SupplierRegisterModal from "./SupplierRegisterModal";
-import ForgotPasswordModal from "./ForgotPasswordModal";
-import UploadStoreModal from "./UploadStoreModal";
+// import SupplierLoginModal from "./SupplierLoginModal";
+// import SupplierRegisterModal from "./SupplierRegisterModal";
+// import ForgotPasswordModal from "./ForgotPasswordModal";
+// import UploadStoreModal from "./UploadStoreModal";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 
 const Hero: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] =
+    useState<boolean>(false);
   // const [isSupplierLoginModalOpen, setIsSupplierLoginModalOpen] =
   //   useState<boolean>(false);
   // const [isSupplierRegisterModalOpen, setIsSupplierRegisterModalOpen] =
@@ -65,10 +68,6 @@ const Hero: React.FC = () => {
   //   setIsUploadStoreModalOpen(false);
   // };
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isVerificationModalOpen, setIsVerificationModalOpen] =
-    useState<boolean>(false);
-
   // Open Create modal
   const handleCreateClick = () => {
     setIsModalOpen(true);
@@ -95,7 +94,6 @@ const Hero: React.FC = () => {
     <section className="px-5">
       <div className="max-w-[1180px] w-full mx-auto">
         <div className="flex flex-col gap-6 md:gap-8 mb-12 md:mb-20">
-
           <div className="flex items-center gap-3">
             <Image
               src="/assets/icons/suggestion.svg"
@@ -123,7 +121,6 @@ const Hero: React.FC = () => {
         </div>
 
         <ProductSlider />
-
 
         {/* {isSupplierLoginModalOpen && (
           <SupplierLoginModal

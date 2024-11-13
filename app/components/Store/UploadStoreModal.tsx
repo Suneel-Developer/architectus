@@ -7,29 +7,29 @@ interface UploadStoreModalProps {
 }
 
 const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
-  const [isUploading, setIsUploading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [fileName, setFileName] = useState<string | null>("");
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const [fileSize, setFileSize] = useState<number>(0);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
-      // Start uploading
+      setFileName(file.name);
+      setFileSize(Number((file.size / 1024).toFixed(2)));
       setIsUploading(true);
-      setProgress(0);
 
-      // Simulate file upload
-      const uploadInterval = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(uploadInterval);
-            setImageUrl(URL.createObjectURL(file)); // Set image URL after upload
-            setIsUploading(false); // Hide upload progress
-            return 100;
-          }
-          return prev + 10;
-        });
-      }, 500);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setTimeout(() => {
+          setIsUploading(false);
+          setProgress(100);
+          setImageUrl(reader.result as string);
+        }, 2000);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -40,6 +40,8 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
 
   const handleDelete = () => {
     setImageUrl(null);
+    setFileName("");
+    setFileSize(0);
   };
 
   return (
@@ -72,7 +74,8 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
           </p>
 
           <div className="relative borderUpload py-5 md:py-8 mt-6">
-            {!isUploading && !imageUrl && (
+            {/* Show file upload div when not uploading and no image is present */}
+            {!isUploading && (
               <div className="text-center">
                 <input
                   className="absolute inset-0 w-full h-full opacity-0 z-50 cursor-pointer"
@@ -80,7 +83,7 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
                   onChange={handleFileChange}
                 />
                 <div>
-                  <img
+                  <Image
                     alt="upload"
                     loading="lazy"
                     width="42"
@@ -91,23 +94,17 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
                   />
                   <h3 className="mt-6 text-sm font-normal text-[#0B0B0B]">
                     <label htmlFor="file-upload" className="relative">
-                      <span>Drag and drop </span>
+                      <span>Drag and drop or </span>
                       <span className="text-[#3D2278] font-semibold">
-                        or browse
+                        browse
                       </span>
-                      <input
-                        id="file-upload"
-                        className="sr-only"
-                        type="file"
-                        name="file-upload"
-                        onChange={handleFileChange}
-                      />
                     </label>
                   </h3>
                 </div>
               </div>
             )}
 
+            {/* Show progress loading div when uploading */}
             {isUploading && (
               <div className="flex justify-center items-center flex-col">
                 <div className="border-2 rounded-full border-[#FAFAFA] w-11 h-11 flex items-center justify-center text-[#0F0A19B2] text-xs">
@@ -124,8 +121,6 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
                 </button>
               </div>
             )}
-
-            {/* When upload completes, show the image and allow deletion */}
           </div>
 
           <div className="flex flex-col md:flex-row justify-between gap-1 mt-[10px] mb-7">
@@ -137,32 +132,35 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
             </p>
           </div>
 
-          <div>
-            {imageUrl && !isUploading && (
-              <div className="text-center mt-6">
-                <div className="flex justify-center items-center">
-                  <img
-                    src={imageUrl}
-                    alt="Uploaded"
-                    className="w-20 h-20 object-cover rounded-full mx-auto"
-                  />
-                  <button className="text-red-500 ml-2" onClick={handleDelete}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      className="bi bi-trash"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M5.5 0a.5.5 0 0 1 .5.5V1h5V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 3v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3H1z" />
-                    </svg>
-                    Delete
-                  </button>
+          {/* Show uploaded image outside */}
+          {imageUrl && !isUploading && (
+            <div className="border border-[#E7E7E7] rounded-[10px] p-4 flex items-center justify-between gap-1 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-[#E7E7E766] w-12 h-12 p-1 rounded-lg flex justify-center items-center overflow-hidden">
+                  <img src={imageUrl} alt="Uploaded" className="object-cover" />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <p className="text-[#0F0A19] text-sm font-medium">
+                    {fileName}
+                  </p>
+                  <p className="text-[#0F0A19B2] text-xs font-normal">
+                    {fileSize}KB
+                  </p>
                 </div>
               </div>
-            )}
-          </div>
+
+              <button onClick={handleDelete}>
+                <Image
+                  src="/assets/icons/delete-icon.svg"
+                  alt="delete-icon"
+                  width={20}
+                  height={20}
+                  loading="lazy"
+                />
+              </button>
+            </div>
+          )}
 
           <div className="flex flex-col gap-y-4">
             <input
