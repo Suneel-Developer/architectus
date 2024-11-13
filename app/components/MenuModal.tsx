@@ -324,7 +324,7 @@ const MenuModal = () => {
       {/* Favorutes Windows Modal  */}
       {isFavoritesModalOpen && (
         <FavoriteModal
-          onClose={handleFavoritesModal}
+          onClose={handleCloseFavoritesModal}
           onCreate={handleVerificationModal}
         />
       )}
