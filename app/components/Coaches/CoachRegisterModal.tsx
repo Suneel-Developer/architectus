@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import SupplierRegisterModal from "../Store/SupplierRegisterModal";
 
 interface CoachRegisterModalProps {
   onClose: () => void;
@@ -17,8 +18,9 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
   const [videoSrc1, setVideoSrc1] = useState(null);
   const [videoSrc2, setVideoSrc2] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSupplierRegisterModal, setIsSupplierRegisterModal] = useState(false);
 
-  const handleFileChange1 = (event) => {
+  const handleFileChange1 = (event: any) => {
     const file = event.target.files[0];
     if (file) {
       const videoURL = URL.createObjectURL(file);
@@ -26,7 +28,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
     }
   };
 
-  const handleFileChange2 = (event) => {
+  const handleFileChange2 = (event: any) => {
     const file = event.target.files[0];
     if (file) {
       const videoURL = URL.createObjectURL(file);
@@ -36,6 +38,16 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
 
   const handleSelectClick = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleOpenSupplierRegisterModal = (event) => {
+    if (event.target.value === "Product /service") {
+      setIsSupplierRegisterModal(true);
+    }
+  };
+
+  const handleCloseSupplierRegisterModal = () => {
+    setIsSupplierRegisterModal(false);
   };
 
   return (
@@ -61,9 +73,10 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
         <form className="flex flex-col gap-y-4 h-[90vh] overflow-y-scroll overflow-x-hidden formscrollbar">
           <div className="relative mt-5">
             <select
-              onClick={handleSelectClick}
-              onBlur={() => setIsOpen(false)}
-              className="border placeholder:text-sm text-[#0F1017] placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit cursor-pointer appearance-none w-full"
+              onClick={() => setIsOpen((prev) => !prev)}
+              onChange={handleOpenSupplierRegisterModal}
+              onBlur={() => setIsOpen(false)} // Optional: closes when the focus is lost
+              className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit cursor-pointer appearance-none w-full"
               defaultValue="Type of content"
             >
               <option value="Type of content" disabled>
@@ -79,6 +92,15 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                 isOpen ? "rotate-180" : ""
               }`}
             />
+
+            {isSupplierRegisterModal && (
+              <SupplierRegisterModal
+                onClose={handleCloseSupplierRegisterModal}
+                onLogin={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+            )}
           </div>
 
           {/* Discription textarea  */}
