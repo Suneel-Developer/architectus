@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 
 interface DownloadModalProps {
@@ -12,6 +13,22 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
   onLogin,
   onCaptcha,
 }) => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImage(imageUrl);
+    }
+  };
+
+  const handleCameraClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-5 py-3">
       {/* If Click outside the white box then Window Close  */}
@@ -37,6 +54,50 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
         />
 
         <form className="gap-5 flex flex-col mt-8 gap-y-5">
+          {/* Profile Image File  */}
+          <div className="flex justify-center flex-col items-center">
+            <div className="relative w-[100px] h-[100px] flex items-center justify-center rounded-full bg-[#0F0A1914] cursor-pointer">
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="opacity-0 top-8 absolute cursor-pointer"
+                onChange={handleImageChange}
+              />
+
+              {/* Conditionally render the profile vector or the selected image */}
+              {selectedImage ? (
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <Image
+                  src="/assets/profile-vector.svg"
+                  alt="profile-vector"
+                  width={40}
+                  height={44}
+                />
+              )}
+
+              <div
+                className="bg-[#3D2278] w-[30px] h-[30px] rounded-full flex justify-center items-center absolute bottom-0 right-0 cursor-pointer"
+                onClick={handleCameraClick}
+              >
+                <Image
+                  src="/assets/camera.svg"
+                  alt="camera icon"
+                  width={16}
+                  height={14}
+                />
+              </div>
+            </div>
+
+            <h2 className="text-base font-semibold text-[#0F0A19] mt-4">
+              Upload your profile
+            </h2>
+          </div>
+
           <input
             type="text"
             placeholder="Username"

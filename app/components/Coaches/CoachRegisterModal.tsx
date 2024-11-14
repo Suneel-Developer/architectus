@@ -16,22 +16,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
 }) => {
   const [videoSrc1, setVideoSrc1] = useState(null);
   const [videoSrc2, setVideoSrc2] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const fileInputRef = useRef(null);
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedImage(imageUrl);
-    }
-  };
-
-  const handleCameraClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
 
   const handleFileChange1 = (event) => {
     const file = event.target.files[0];
@@ -70,54 +55,12 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
         />
 
         <form className="flex flex-col gap-y-4 h-[90vh] overflow-y-scroll overflow-x-hidden formscrollbar">
-          {/* Profile Image File  */}
-          <div className="my-4 flex justify-center flex-col items-center">
-            <div className="relative w-[100px] h-[100px] flex items-center justify-center rounded-full bg-[#0F0A1914] cursor-pointer">
-              <input
-                type="file"
-                ref={fileInputRef}
-                className="opacity-0 top-8 absolute cursor-pointer"
-                onChange={handleImageChange}
-              />
-
-              {/* Conditionally render the profile vector or the selected image */}
-              {selectedImage ? (
-                <img
-                  src={selectedImage}
-                  alt="Selected"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              ) : (
-                <Image
-                  src="/assets/profile-vector.svg"
-                  alt="profile-vector"
-                  width={40}
-                  height={44}
-                />
-              )}
-
-              <div
-                className="bg-[#3D2278] w-[30px] h-[30px] rounded-full flex justify-center items-center absolute bottom-0 right-0 cursor-pointer"
-                onClick={handleCameraClick}
-              >
-                <Image
-                  src="/assets/camera.svg"
-                  alt="camera icon"
-                  width={16}
-                  height={14}
-                />
-              </div>
-            </div>
-
-            <h2 className="text-base font-semibold text-[#0F0A19] mt-4">
-              Upload your profile
-            </h2>
-          </div>
+          
 
           {/* Discription textarea  */}
           <textarea
             placeholder="Write a small description about your sport discipline, training method, exercise type, skill level."
-            className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
+            className="border mt-5 placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
           />
 
           {/* Video Uploader 1 */}
