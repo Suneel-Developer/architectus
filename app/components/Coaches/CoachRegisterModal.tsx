@@ -94,12 +94,14 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             />
 
             {isSupplierRegisterModal && (
-              <SupplierRegisterModal
-                onClose={handleCloseSupplierRegisterModal}
-                onLogin={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
-              />
+              <div className="z-50">
+                <SupplierRegisterModal
+                  onClose={handleCloseSupplierRegisterModal}
+                  onLogin={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
             )}
           </div>
 
@@ -114,7 +116,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             {!videoSrc1 && (
               <div className="relative borderUpload py-5 md:py-10">
                 <input
-                  className="absolute inset-0 w-full h-full opacity-0 z-50 cursor-pointer"
+                  className="absolute inset-0 w-full h-full opacity-0 z-40 cursor-pointer"
                   type="file"
                   accept="video/*"
                   onChange={handleFileChange1}
@@ -171,7 +173,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             {!videoSrc2 && (
               <div className="relative borderUpload py-5 md:py-10">
                 <input
-                  className="absolute inset-0 w-full h-full opacity-0 z-50 cursor-pointer"
+                  className="absolute inset-0 w-full h-full opacity-0 z-40 cursor-pointer"
                   type="file"
                   accept="video/*"
                   onChange={handleFileChange2}
