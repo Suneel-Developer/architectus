@@ -58,6 +58,16 @@ const NavTabs = () => {
       </Link>
 
       <Link
+        href="/coaches"
+        ref={(el) => {
+          tabRefs.current["/coaches"] = el;
+        }}
+        className={getTabClassName("/coaches")}
+      >
+        Podcasts
+      </Link>
+
+      <Link
         href="/tutorials"
         ref={(el) => {
           tabRefs.current["/tutorials"] = el;
