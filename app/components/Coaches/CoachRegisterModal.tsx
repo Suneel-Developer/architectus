@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import CaptchaModal from "../CaptchaModal";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 interface CoachRegisterModalProps {
   onClose: () => void;
@@ -16,7 +16,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
 }) => {
   const [videoSrc1, setVideoSrc1] = useState(null);
   const [videoSrc2, setVideoSrc2] = useState(null);
-
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleFileChange1 = (event) => {
     const file = event.target.files[0];
@@ -32,6 +32,10 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
       const videoURL = URL.createObjectURL(file);
       setVideoSrc2(videoURL);
     }
+  };
+
+  const handleSelectClick = () => {
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -55,12 +59,32 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
         />
 
         <form className="flex flex-col gap-y-4 h-[90vh] overflow-y-scroll overflow-x-hidden formscrollbar">
-          
+          <div className="relative mt-5">
+            <select
+              onClick={handleSelectClick}
+              onBlur={() => setIsOpen(false)}
+              className="border placeholder:text-sm text-[#0F1017] placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit cursor-pointer appearance-none w-full"
+              defaultValue="Type of content"
+            >
+              <option value="Type of content" disabled>
+                Type of content
+              </option>
+              <option value="Coach">Coach</option>
+              <option value="Tutorials">Tutorials</option>
+              <option value="Podcast">Podcast</option>
+              <option value="Product /service">Product /service</option>
+            </select>
+            <MdKeyboardArrowDown
+              className={`absolute right-4 top-1/2 transform -translate-y-1/2 transition-transform duration-300 text-2xl ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            />
+          </div>
 
           {/* Discription textarea  */}
           <textarea
             placeholder="Write a small description about your sport discipline, training method, exercise type, skill level."
-            className="border mt-5 placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
+            className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
           />
 
           {/* Video Uploader 1 */}
@@ -212,7 +236,11 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
-          <button type="button" onClick={onCaptcha} className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+          <button
+            type="button"
+            onClick={onCaptcha}
+            className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+          >
             Register
           </button>
 
