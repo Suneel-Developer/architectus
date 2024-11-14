@@ -6,48 +6,46 @@ import "swiper/swiper-bundle.css";
 import { Pagination } from "swiper/modules";
 import SupplierPlan from "./SupplierPlan";
 import Reviews from "../Reviews";
+import Link from "next/link";
 
 const products = [
   {
     id: 1,
-    image: "/assets/product-1.jfif",
-    name: "Beta-Alanine",
-    brand: "Kaged Muscle",
-    originalPrice: "€19,90",
-    discountedPrice: "€9,95",
+    image: "/assets/product-1.jpg",
+    name: "Loaded",
+    brand: "4Endurance Pro",
+    originalPrice: "€29,90",
+    discountedPrice: "€19,43",
+    link: "https://www.trufit.eu/lv/4endurance-pro-loaded#168=422"
   },
   {
     id: 2,
-    image: "/assets/product-2.jfif",
-    name: "Foods Vitamin D3",
+    image: "/assets/product-2.jpg",
+    name: "Pro Flex",
     brand: "Smartys",
-    originalPrice: "€19,90",
-    discountedPrice: "€9,95",
+    originalPrice: "€39,90",
+    discountedPrice: "€25,93",
+    link: "https://www.trufit.eu/lv/4endurance-pro-pro-flex#168=1256"
   },
   {
     id: 3,
-    image: "/assets/product-3.jfif",
-    name: "Dumbbells",
+    image: "/assets/product-3.jpg",
+    name: "L-Carnitine Energy Gel",
     brand: "Bowflex",
-    originalPrice: "€19,90",
-    discountedPrice: "€9,95",
+    originalPrice: "€2,49",
+    discountedPrice: "€1,62",
+    link: "https://www.trufit.eu/lv/4endurance-pro-l-carnitine-energy-gel#168=1288"
   },
   {
     id: 4,
-    image: "/assets/product-4.jfif",
-    name: "Running Shorts",
-    brand: "Nike",
-    originalPrice: "€19,90",
-    discountedPrice: "€9,95",
+    image: "/assets/product-4.jpg",
+    name: "Acetyl-L-Carnitine",
+    brand: "4Endurance Pro",
+    originalPrice: "€24,90",
+    discountedPrice: "€16,18",
+    link: "https://www.trufit.eu/lv/4endurance-pro-acetyl-l-carnitine#168=422"
   },
-  {
-    id: 4,
-    image: "/assets/product-2.jfif",
-    name: "Foods Vitamin D3",
-    brand: "Smartys",
-    originalPrice: "€19,90",
-    discountedPrice: "€9,95",
-  },
+
 ];
 
 const ProductSlider: React.FC = () => {
@@ -85,7 +83,7 @@ const ProductSlider: React.FC = () => {
             slidesPerView: 2,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 3,
           },
         }}
         modules={[Pagination]}
@@ -95,11 +93,11 @@ const ProductSlider: React.FC = () => {
         {products.map((product) => (
           <SwiperSlide key={product.id}>
             <div className="bg-white productbox rounded-[14px] overflow-hidden mb-14 md:mb-20">
-              <div className="h-[160px] w-full">
+              <div className="h-[260px] w-full bg-white">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
 
@@ -130,12 +128,13 @@ const ProductSlider: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <button
-                    onClick={handleOpenSupplierPlanModal}
-                    className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+                  <Link
+                    href={product.link}
+                    target="_blank"
+                    className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 flex items-center justify-center text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
                   >
                     Buy Now
-                  </button>
+                  </Link>
                   <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
                     Save
                   </button>
