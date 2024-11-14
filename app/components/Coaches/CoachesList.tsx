@@ -15,6 +15,8 @@ const coachesData = [
     image: "/assets/coaches-1.png",
     specialties: ["Cross Fit", "Boxing"],
     profileLink: "/profile/john-doe",
+    coachvideo: "/assets/video-1.mp4",
+    videotitle: "Exercise Tutorial - Squat",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -25,6 +27,8 @@ const coachesData = [
     image: "/assets/coaches-2.png",
     specialties: ["Circuit", "Cross Fit", "Boxing"],
     profileLink: "/profile/esthera-jackson",
+    coachvideo: "/assets/video-2.mp4",
+    videotitle: "Best 7 ABS Exercises For SIX PACK ",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -35,6 +39,8 @@ const coachesData = [
     image: "/assets/coaches-3.png",
     specialties: ["Strength", "Boxing"],
     profileLink: "/profile/alexa-liras",
+    coachvideo: "/assets/video-2.mp4",
+    videotitle: "Best 7 ABS Exercises For SIX PACK ",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -45,6 +51,8 @@ const coachesData = [
     image: "/assets/coaches-4.png",
     specialties: ["Strength", "Boxing"],
     profileLink: "/profile/laurent-michael",
+    coachvideo: "/assets/video-3.mp4",
+    videotitle: "Best 7 ABS Exercises For SIX PACK ",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -182,6 +190,17 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
             {visibleCoachId === coach.id && (
               <div className="mt-6 pb-7 px-4 md:px-8">
                 <div className="flex flex-col gap-6">
+
+                  {/* Video With title  */}
+                  <div className="mb-2">
+                    <div className="max-w-[400px] w-full rounded-lg overflow-hidden h-[200px] md:h-[250px]">
+                      <video src={coach.coachvideo} loop autoPlay muted controls className="w-full h-full object-cover"></video>
+                    </div>
+
+                    <h2 className="text-[#0F1017] text-lg font-medium mt-5">{coach.videotitle}</h2>
+                  </div>
+
+                  
                   <p className="text-sm md:text-base text-[#0F1017]">
                     {coach.disc}
                   </p>
