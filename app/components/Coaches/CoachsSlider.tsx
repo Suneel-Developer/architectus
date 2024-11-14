@@ -216,7 +216,7 @@ const CoachesSlider: React.FC = () => {
                           </h2>
                         </div>
 
-                        <div>
+                        <div className="hidden md:block">
                           <div className="rounded-lg overflow-hidden h-[200px] md:h-[250px]">
                             {isPlayingSecond ? (
                               <video
