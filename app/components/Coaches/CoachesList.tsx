@@ -16,9 +16,12 @@ const coachesData = [
     image: "/assets/coaches-1.png",
     specialties: ["Cross Fit", "Boxing"],
     profileLink: "/profile/john-doe",
-    coachvideo: "/assets/video-1.mp4",
-    videoThumbnail: "/assets/video-thumbnail.jfif",
-    videotitle: "Exercise Tutorial - Squat",
+    coachvideo1: "/assets/video-4.mp4",
+    coachvideo2: "/assets/video-1.mp4",
+    videoThumbnail1: "/assets/thumbnail-4.jpg",
+    videoThumbnail2: "/assets/video-thumbnail.jfif",
+    videotitle1: "How I Got to 11.6% Body Fat in 60 Days",
+    videotitle2: "Exercise Tutorial - Squat",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -29,9 +32,12 @@ const coachesData = [
     image: "/assets/coaches-2.png",
     specialties: ["Circuit", "Cross Fit", "Boxing"],
     profileLink: "/profile/esthera-jackson",
-    coachvideo: "/assets/video-2.mp4",
-    videoThumbnail: "/assets/thubnail-2.jpg",
-    videotitle: "Best 7 ABS Exercises For SIX PACK ",
+    coachvideo1: "/assets/video-2.mp4",
+    coachvideo2: "/assets/video-5.mp4",
+    videoThumbnail1: "/assets/thubnail-2.jpg",
+    videoThumbnail2: "/assets/thumbnail-5.jpg",
+    videotitle1: "Best 7 ABS Exercises For SIX PACK",
+    videotitle2: "Best Kickboxing: Thai or Dutch?",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -42,9 +48,12 @@ const coachesData = [
     image: "/assets/coaches-3.png",
     specialties: ["Strength", "Boxing"],
     profileLink: "/profile/alexa-liras",
-    coachvideo: "/assets/video-2.mp4",
-    videoThumbnail: "/assets/thumbnail-3.jpg",
-    videotitle: "Best 7 ABS Exercises For SIX PACK ",
+    coachvideo1: "/assets/video-3.mp4",
+    coachvideo2: "/assets/video-6.mp4",
+    videoThumbnail1: "/assets/thumbnail-3.jpg",
+    videoThumbnail2: "/assets/thumbnail-6.jpg",
+    videotitle1: "The Best Workout Routine",
+    videotitle2: "The ONLY 2 Exercises That Built My Six Pack Abs",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -55,9 +64,12 @@ const coachesData = [
     image: "/assets/coaches-4.png",
     specialties: ["Strength", "Boxing"],
     profileLink: "/profile/laurent-michael",
-    coachvideo: "/assets/video-3.mp4",
-    videoThumbnail: "/assets/thumbnail-3.jpg",
-    videotitle: "Best 7 ABS Exercises For SIX PACK ",
+    coachvideo1: "/assets/video-2.mp4",
+    coachvideo2: "/assets/video-5.mp4",
+    videoThumbnail1: "/assets/thubnail-2.jpg",
+    videoThumbnail2: "/assets/thumbnail-5.jpg",
+    videotitle1: "Best 7 ABS Exercises For SIX PACK",
+    videotitle2: "Best Kickboxing: Thai or Dutch?",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
     countryflag: "/assets/english-language-flag.svg",
@@ -74,8 +86,10 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
     null
   );
   const [isVisibleReviews, setIsVisibleReviews] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef(null);
+  const [isPlayingFirst, setIsPlayingFirst] = useState(false);
+  const [isPlayingSecond, setIsPlayingSecond] = useState(false);
+  const videoRefFirst = useRef(null);
+  const videoRefSecond = useRef(null);
 
   const handleToggleDetails = (id: number) => {
     setVisibleCoachId(visibleCoachId === id ? null : id);
@@ -95,18 +109,31 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
 
   const displayedCoaches = showSingle ? [coachesData[0]] : coachesData;
 
-
-  const handlePlay = () => {
-    setIsPlaying(true);
-    if (videoRef.current) {
-      videoRef.current.play();
+  const handlePlayFirst = () => {
+    setIsPlayingFirst(true);
+    if (videoRefFirst.current) {
+      videoRefFirst.current.play();
     }
   };
 
-  const handlePause = () => {
-    setIsPlaying(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
+  const handlePauseFirst = () => {
+    setIsPlayingFirst(false);
+    if (videoRefFirst.current) {
+      videoRefFirst.current.pause();
+    }
+  };
+
+  const handlePlaySecond = () => {
+    setIsPlayingSecond(true);
+    if (videoRefSecond.current) {
+      videoRefSecond.current.play();
+    }
+  };
+
+  const handlePauseSecond = () => {
+    setIsPlayingSecond(false);
+    if (videoRefSecond.current) {
+      videoRefSecond.current.pause();
     }
   };
 
@@ -213,39 +240,75 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
               <div className="mt-6 pb-7 px-4 md:px-8">
                 <div className="flex flex-col gap-6">
                   {/* Video With title  */}
-                  <div className="mb-2">
-                    <div className="max-w-[400px] w-full rounded-lg overflow-hidden h-[200px] md:h-[250px]">
-                      {isPlaying ? (
-                        <video
-                          ref={videoRef}
-                          src={coach.coachvideo}
-                          loop
-                          autoPlay
-                          muted
-                          controls
-                          className="w-full h-full object-cover"
-                          onPause={handlePause}
-                        ></video>
-                      ) : (
-                        <div className="relative w-full h-full">
-                          <img
-                            src={coach.videoThumbnail}
-                            alt=""
+                  <div className="mb-2 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-[850px] w-full">
+                    <div>
+                      <div className="rounded-lg overflow-hidden h-[200px] md:h-[250px] mb-4">
+                        {isPlayingFirst ? (
+                          <video
+                            ref={videoRefFirst}
+                            src={coach.coachvideo1}
+                            loop
+                            autoPlay
+                            muted
+                            controls
                             className="w-full h-full object-cover"
-                          />
-                          <button
-                            onClick={handlePlay}
-                            className="bg-[#3D2278] text-white text-base flex items-center justify-center transition-opacity duration-300 hover:opacity-90 w-12 h-12 rounded-full absolute top-0 left-0 right-0 bottom-0 m-auto"
-                          >
-                            <FaPlay />
-                          </button>
-                        </div>
-                      )}
+                            onPause={handlePauseFirst}
+                          ></video>
+                        ) : (
+                          <div className="relative w-full h-full">
+                            <img
+                              src={coach.videoThumbnail1}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                            <button
+                              onClick={handlePlayFirst}
+                              className="bg-[#3D2278] text-white text-base flex items-center justify-center transition-opacity duration-300 hover:opacity-90 w-12 h-12 rounded-full absolute top-0 left-0 right-0 bottom-0 m-auto"
+                            >
+                              <FaPlay />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                      <h2 className="text-[#0F1017] text-base font-medium mt-5">
+                        {coach.videotitle1}
+                      </h2>
                     </div>
 
-                    <h2 className="text-[#0F1017] text-lg font-medium mt-5">
-                      {coach.videotitle}
-                    </h2>
+                    <div>
+                      <div className="rounded-lg overflow-hidden h-[200px] md:h-[250px]">
+                        {isPlayingSecond ? (
+                          <video
+                            ref={videoRefSecond}
+                            src={coach.coachvideo2}
+                            loop
+                            autoPlay
+                            muted
+                            controls
+                            className="w-full h-full object-cover"
+                            onPause={handlePauseSecond}
+                          ></video>
+                        ) : (
+                          <div className="relative w-full h-full">
+                            <img
+                              src={coach.videoThumbnail2}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                            <button
+                              onClick={handlePlaySecond}
+                              className="bg-[#3D2278] text-white text-base flex items-center justify-center transition-opacity duration-300 hover:opacity-90 w-12 h-12 rounded-full absolute top-0 left-0 right-0 bottom-0 m-auto"
+                            >
+                              <FaPlay />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+
+                      <h2 className="text-[#0F1017] text-base font-medium mt-5">
+                        {coach.videotitle2}
+                      </h2>
+                    </div>
                   </div>
 
                   <p className="text-sm md:text-base text-[#0F1017]">
