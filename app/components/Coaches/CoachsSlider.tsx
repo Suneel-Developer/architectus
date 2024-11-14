@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineTextsms } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
+import { FaPlay } from "react-icons/fa";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -20,6 +21,7 @@ const displayedCoaches = [
     specialties: ["Cross Fit", "Boxing"],
     profileLink: "/profile/john-doe",
     coachvideo: "/assets/video-1.mp4",
+    videoThumbnail: "/assets/video-thumbnail.jfif",
     videotitle: "Exercise Tutorial - Squat",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
@@ -32,6 +34,7 @@ const displayedCoaches = [
     specialties: ["Circuit", "Cross Fit", "Boxing"],
     profileLink: "/profile/esthera-jackson",
     coachvideo: "/assets/video-2.mp4",
+    videoThumbnail: "/assets/thubnail-2.jpg",
     videotitle: "Best 7 ABS Exercises For SIX PACK",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
@@ -44,6 +47,7 @@ const displayedCoaches = [
     specialties: ["Strength", "Boxing"],
     profileLink: "/profile/alexa-liras",
     coachvideo: "/assets/video-3.mp4",
+    videoThumbnail: "/assets/thumbnail-3.jpg",
     videotitle: "Exercise Tutorial - Squat",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
@@ -56,6 +60,7 @@ const displayedCoaches = [
     specialties: ["Strength", "Boxing"],
     profileLink: "/profile/laurent-michael",
     coachvideo: "/assets/video-3.mp4",
+    videoThumbnail: "/assets/thumbnail-3.jpg",
     videotitle: "Best 7 ABS Exercises For SIX PACK",
     disc: "Concrete is an artificial composite material, comprising a matrix of cementitious binder (typically Portland cement paste or asphalt) and a dispersed phase or filler of aggregate (typically a rocky material, loose stones, and sand).",
     language: "English",
@@ -67,6 +72,9 @@ const CoachesSlider: React.FC = () => {
   const [isShareModalVisible, setIsShareModalVisible] =
     useState<Boolean>(false);
   const [isVisibleReviews, setIsVisibleReviews] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef(null);
+
 
   const handleOpenShareModal = () => {
     setIsShareModalVisible(true);
@@ -78,6 +86,21 @@ const CoachesSlider: React.FC = () => {
 
   const handleShowReviews = () => {
     setIsVisibleReviews(!isVisibleReviews);
+  };
+
+  
+  const handlePlay = () => {
+    setIsPlaying(true);
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
   };
 
   return (
@@ -133,16 +156,34 @@ const CoachesSlider: React.FC = () => {
                     <div className="flex flex-col gap-6">
                       {/* Video With title  */}
                       <div className="mb-2">
-                        <div className="max-w-[400px] w-full rounded-lg overflow-hidden h-[200px] md:h-[250px]">
-                          <video
-                            src={coach.coachvideo}
-                            loop
-                            // autoPlay
-                            muted
-                            controls
+                      <div className="max-w-[400px] w-full rounded-lg overflow-hidden h-[200px] md:h-[250px]">
+                      {isPlaying ? (
+                        <video
+                          ref={videoRef}
+                          src={coach.coachvideo}
+                          loop
+                          autoPlay
+                          muted
+                          controls
+                          className="w-full h-full object-cover"
+                          onPause={handlePause}
+                        ></video>
+                      ) : (
+                        <div className="relative w-full h-full">
+                          <img
+                            src={coach.videoThumbnail}
+                            alt=""
                             className="w-full h-full object-cover"
-                          ></video>
+                          />
+                          <button
+                            onClick={handlePlay}
+                            className="bg-[#3D2278] text-white text-base flex items-center justify-center transition-opacity duration-300 hover:opacity-90 w-12 h-12 rounded-full absolute top-0 left-0 right-0 bottom-0 m-auto"
+                          >
+                            <FaPlay />
+                          </button>
                         </div>
+                      )}
+                    </div>
 
                         <h2 className="text-[#0F1017] text-lg font-medium mt-5">
                           {coach.videotitle}
