@@ -13,6 +13,15 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
 }) => {
   const [videoSrc1, setVideoSrc1] = useState(null);
   const [videoSrc2, setVideoSrc2] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImage(imageUrl);
+    }
+  };
 
   const handleFileChange1 = (event) => {
     const file = event.target.files[0];
@@ -57,13 +66,24 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
               <input
                 type="file"
                 className="opacity-0 top-8 absolute cursor-pointer"
+                onChange={handleImageChange}
               />
-              <Image
-                src="/assets/profile-vector.svg"
-                alt="profile-vector"
-                width={40}
-                height={44}
-              />
+
+              {/* Conditionally render the profile vector or the selected image */}
+              {selectedImage ? (
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <Image
+                  src="/assets/profile-vector.svg"
+                  alt="profile-vector"
+                  width={40}
+                  height={44}
+                />
+              )}
 
               <div className="bg-[#3D2278] w-[30px] h-[30px] rounded-full flex justify-center items-center absolute bottom-0 right-0">
                 <Image
@@ -74,6 +94,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                 />
               </div>
             </div>
+
             <h2 className="text-base font-semibold text-[#0F0A19] mt-4">
               Upload your profile
             </h2>
@@ -121,16 +142,16 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             )}
 
             {videoSrc1 && (
-                <div className="border-[#E7E7E7] flex-1 w-full h-[160px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
-                  <div className="max-w-full md:max-w-[240px] w-full mx-auto h-[160px]">
-                    <video
-                      src={videoSrc1}
-                      autoPlay
-                      controls
-                      className="h-full w-full object-cover"
-                    ></video>
-                  </div>
+              <div className="border-[#E7E7E7] flex-1 w-full h-[160px] rounded-[10px] bg-[#FAFAFA] overflow-hidden">
+                <div className="max-w-full md:max-w-[240px] w-full mx-auto h-[160px]">
+                  <video
+                    src={videoSrc1}
+                    autoPlay
+                    controls
+                    className="h-full w-full object-cover"
+                  ></video>
                 </div>
+              </div>
             )}
           </div>
 
