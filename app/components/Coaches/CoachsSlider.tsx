@@ -137,7 +137,7 @@ const CoachesSlider: React.FC = () => {
                           <video
                             src={coach.coachvideo}
                             loop
-                            autoPlay
+                            // autoPlay
                             muted
                             controls
                             className="w-full h-full object-cover"

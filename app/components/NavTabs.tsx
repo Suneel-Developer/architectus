@@ -58,11 +58,11 @@ const NavTabs = () => {
       </Link>
 
       <Link
-        href="/coaches"
+        href="/podcasts"
         ref={(el) => {
-          tabRefs.current["/coaches"] = el;
+          tabRefs.current["/podcasts"] = el;
         }}
-        className={getTabClassName("/coaches")}
+        className={getTabClassName("/podcasts")}
       >
         Podcasts
       </Link>

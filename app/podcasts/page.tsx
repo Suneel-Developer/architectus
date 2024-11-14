@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../components/Header";
 import NavTabs from "../components/NavTabs";
-import Footer from "../components/Footer";
 import Hero from "../components/Coaches/Hero";
-import MenuModal from "../components/MenuModal";
 import CoachesSlider from "../components/Coaches/CoachsSlider";
+import MenuModal from "../components/MenuModal";
+import Footer from "../components/Footer";
 
-const Coaches: React.FC = () => {
+const Podcasts = () => {
   return (
     <>
       <Header />
@@ -21,4 +21,4 @@ const Coaches: React.FC = () => {
   );
 };
 
-export default Coaches;
+export default Podcasts;
