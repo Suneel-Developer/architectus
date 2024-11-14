@@ -181,9 +181,9 @@ const CoachesSlider: React.FC = () => {
                   <div className="mt-6 pb-7 px-4 md:px-8">
                     <div className="flex flex-col gap-6">
                       {/* Video With title  */}
-                      <div className="mb-2 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-[850px] w-full">
+                      <div className="mb-2 grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
                         <div>
-                          <div className="rounded-lg overflow-hidden h-[200px] md:h-[250px] mb-4">
+                          <div className="rounded-lg overflow-hidden h-[200px] md:h-[300px] mb-4">
                             {isPlayingFirst ? (
                               <video
                                 ref={videoRefFirst}
@@ -217,7 +217,7 @@ const CoachesSlider: React.FC = () => {
                         </div>
 
                         <div className="hidden md:block">
-                          <div className="rounded-lg overflow-hidden h-[200px] md:h-[250px]">
+                          <div className="rounded-lg overflow-hidden h-[200px] md:h-[300px]">
                             {isPlayingSecond ? (
                               <video
                                 ref={videoRefSecond}
