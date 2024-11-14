@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const FavoriteModal = ({ onClose, onCreate }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [text, setText] = useState("");
   const recognitionRef = useRef(null);
+  const router = useRouter();
 
   const handleMicClick = () => {
     if (!isRecording) {
@@ -63,16 +65,15 @@ const FavoriteModal = ({ onClose, onCreate }) => {
         onClick={onClose}
         className="absolute inset-0 bg-[#0F1017B2] bg-opacity-70"
       ></div>
-      
+
       <div className="bg-white rounded-[20px] p-6 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left mb-4">
-        Favorites
+          Favorites
         </h1>
 
         <p className="text-sm text-[#0F0A19B2]">
-        Please describe in as much detail as possible what you intend to create, update, or modify.
-
-
+          Please describe in as much detail as possible what you intend to
+          create, update, or modify.
         </p>
 
         <Image
@@ -119,7 +120,7 @@ const FavoriteModal = ({ onClose, onCreate }) => {
 
         <div className="flex flex-col gap-5 items-center gap-y-5">
           <button
-            onClick={onCreate}
+            onClick={(() => router.push("/podcasts"))}
             className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
           >
             Create

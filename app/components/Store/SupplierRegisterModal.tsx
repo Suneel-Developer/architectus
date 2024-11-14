@@ -77,7 +77,7 @@ const SupplierRegisterModal: React.FC<DownloadModalProps> = ({
           />
 
           <textarea
-            placeholder="Enter Description"
+            placeholder="Write a small description about your product or service such as product/service type, relevant sports categories, and available shipping countries."
             className="border placeholder:text-sm resize-none placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
           />
 
@@ -102,24 +102,6 @@ const SupplierRegisterModal: React.FC<DownloadModalProps> = ({
           <input
             type="text"
             placeholder="Website link"
-            className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
-          />
-
-          <input
-            type="email"
-            placeholder="Email address"
-            className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
-          />
-
-          <input
-            type="password"
-            placeholder="Create password"
-            className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
-          />
-
-          <input
-            type="password"
-            placeholder="Confirm Password"
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
