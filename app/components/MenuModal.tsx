@@ -11,6 +11,7 @@ import CoachRegisterModal from "./Coaches/CoachRegisterModal";
 import CoachForgotPasswordModal from "./Coaches/CoachForgotPasswordModal";
 import FavoriteModal from "./FavoritesModal";
 import VerificationLoadingModal from "./Visualization/VerificationLoadingModal";
+import CaptchaModal from "./CaptchaModal";
 
 const MenuModal = () => {
   const [isOpenMenuModal, setIsOpenMenuModal] = useState<boolean>(false);
@@ -32,6 +33,7 @@ const MenuModal = () => {
     useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
+  const [isOpenCaptchaModal, setIsOpenCaptchaModal] = useState<boolean>(false);
   const router = useRouter();
 
   // Open Menu Modal
@@ -136,6 +138,18 @@ const MenuModal = () => {
   //  Close Verification Modal
   const handleCloseVerificationModal = () => {
     setIsVerificationModalOpen(false);
+  };
+
+  //  Open  Captcha Modal
+  const handleOpenCaptchaModal = () => {
+    setIsCoachRegisterModalOpen(false);
+    setIsUserRegisterModalOpen(false);
+    setIsOpenCaptchaModal(true);
+  };
+
+  //  Close  Captcha Modal
+  const handleCloseCaptchaModal = () => {
+    setIsOpenCaptchaModal(false);
   };
 
   useEffect(() => {
@@ -286,6 +300,7 @@ const MenuModal = () => {
         <CoachRegisterModal
           onClose={handleCloseCoachRegisterModal}
           onLogin={handleCoachLoginModalClick}
+          onCaptcha={handleOpenCaptchaModal}
         />
       )}
 
@@ -310,6 +325,7 @@ const MenuModal = () => {
         <UserRegisterModal
           onClose={handleCloseUserRegisterModal}
           onLogin={handleUserLoginModal}
+          onCaptcha={handleOpenCaptchaModal}
         />
       )}
 
@@ -333,6 +349,8 @@ const MenuModal = () => {
       {isVerificationModalOpen && (
         <VerificationLoadingModal onClose={handleCloseVerificationModal} />
       )}
+
+      {isOpenCaptchaModal && <CaptchaModal onClose={handleCloseCaptchaModal} />}
     </div>
   );
 };

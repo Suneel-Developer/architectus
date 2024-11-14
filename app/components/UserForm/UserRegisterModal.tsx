@@ -4,11 +4,13 @@ import Image from "next/image";
 interface DownloadModalProps {
   onClose: () => void;
   onLogin: () => void;
+  onCaptcha: () => void;
 }
 
 const UserRegisterModal: React.FC<DownloadModalProps> = ({
   onClose,
   onLogin,
+  onCaptcha,
 }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-5 py-3">
@@ -59,17 +61,21 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
-          <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+          <button
+            type="button"
+            onClick={onCaptcha}
+            className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
+          >
             Continue
           </button>
 
           <p className="text-center text-sm text-[#0F0A19B2]">
-          Already have an account?&nbsp;
+            Already have an account?&nbsp;
             <span
               onClick={onLogin}
               className="text-sm cursor-pointer font-semibold text-[#3D2278]"
             >
-             Login
+              Login
             </span>
           </p>
         </form>

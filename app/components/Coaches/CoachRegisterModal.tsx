@@ -1,25 +1,35 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
+import CaptchaModal from "../CaptchaModal";
 
 interface CoachRegisterModalProps {
   onClose: () => void;
   onLogin: () => void;
+  onCaptcha: () => void;
 }
 
 const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
   onClose,
   onLogin,
+  onCaptcha,
 }) => {
   const [videoSrc1, setVideoSrc1] = useState(null);
   const [videoSrc2, setVideoSrc2] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
+    }
+  };
+
+  const handleCameraClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
@@ -65,6 +75,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             <div className="relative w-[100px] h-[100px] flex items-center justify-center rounded-full bg-[#0F0A1914] cursor-pointer">
               <input
                 type="file"
+                ref={fileInputRef}
                 className="opacity-0 top-8 absolute cursor-pointer"
                 onChange={handleImageChange}
               />
@@ -85,7 +96,10 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                 />
               )}
 
-              <div className="bg-[#3D2278] w-[30px] h-[30px] rounded-full flex justify-center items-center absolute bottom-0 right-0">
+              <div
+                className="bg-[#3D2278] w-[30px] h-[30px] rounded-full flex justify-center items-center absolute bottom-0 right-0 cursor-pointer"
+                onClick={handleCameraClick}
+              >
                 <Image
                   src="/assets/camera.svg"
                   alt="camera icon"
@@ -99,13 +113,6 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
               Upload your profile
             </h2>
           </div>
-
-          {/* Enter Your Full Name  */}
-          <input
-            type="text"
-            placeholder="Enter Your Full Name"
-            className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit"
-          />
 
           {/* Discription textarea  */}
           <textarea
@@ -262,7 +269,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
-          <button className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+          <button type="button" onClick={onCaptcha} className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
             Register
           </button>
 
