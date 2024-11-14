@@ -37,7 +37,7 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
         <form className="gap-5 flex flex-col mt-8 gap-y-5">
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Username"
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
