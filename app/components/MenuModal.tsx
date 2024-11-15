@@ -363,7 +363,6 @@ const MenuModal = () => {
       {isFavoritesModalOpen && (
         <FavoriteModal
           onClose={handleCloseFavoritesModal}
-          onCreate={handleVerificationModal}
         />
       )}
 
