@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 
 interface DownloadModalProps {
@@ -7,6 +8,7 @@ interface DownloadModalProps {
 }
 
 const UserForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState<string>("");
 
   const handleEmailChange = (e: any) => {
@@ -38,13 +40,13 @@ const UserForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => {
         />
 
         <p className="mt-4 text-[#6D6D6D] text-left text-sm">
-          Please enter your email to reset the password
+          {t("coaches.coachemodals.forgotpassword")}
         </p>
 
         <form className="gap-5 flex flex-col mt-8 gap-y-5">
           <input
             type="email"
-            placeholder="Enter Your Email"
+            placeholder={t("supportmodal.enteryouremail")}
             value={email}
             onChange={handleEmailChange}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
@@ -57,7 +59,7 @@ const UserForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => {
             }`}
             disabled={!email}
           >
-            Reset Password
+            {t("btns.resetpassword")}
           </button>
         </form>
       </div>

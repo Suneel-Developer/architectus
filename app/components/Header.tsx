@@ -1,9 +1,32 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LanguageDropdown from "./LanguageDropdown";
+import { useTranslation } from "react-i18next";
 
 const Header: React.FC = () => {
+  const [currentLang, setCurrentLang] = useState("en");
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem("selectedLanguage");
+    const langFromPath = window.location.pathname.split("/")[1];
+
+    let finalLang = storedLang || "en";
+
+    if (langFromPath === "pt" || langFromPath === "br") {
+      finalLang = "pt-BR";
+    } else if (langFromPath === "ru") {
+      finalLang = "ru";
+    }
+
+    setCurrentLang(finalLang);
+    i18n.changeLanguage(finalLang);
+  }, [i18n]);
+
+  const createLocalizedPath = (path: any) => `/${currentLang}${path}`;
+
   return (
     <header className="px-5 lg:px-20 navbar h-16 md:h-20 flex items-center justify-between bg-white sticky top-0 w-full z-50">
       <div className="z-50 w-full">
@@ -46,16 +69,15 @@ const Header: React.FC = () => {
             </div>
 
             <h2 className="text-base font-bold text-[#3D2278] uppercase">
-              Workout <span className="text-[#0F0A1980] font-medium">Creator</span>
+              Workout{" "}
+              <span className="text-[#0F0A1980] font-medium">Creator</span>
             </h2>
-
           </Link>
 
           <div className="flex items-center gap-5">
             <LanguageDropdown />
-
             <Link
-              href="/aboutus"
+              href={createLocalizedPath("/aboutus")}
               className="bg-[#3D2278] items-center justify-center rounded-xl hidden md:flex w-10 h-10"
             >
               <Image

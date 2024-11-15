@@ -1,11 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface DownloadModalProps {
   onClose: () => void;
 }
 
 const DownloadModal: React.FC<DownloadModalProps> = ({ onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-5">
       {/* If Click outside the white box then Window Close  */}
@@ -16,7 +19,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ onClose }) => {
 
       <div className="bg-white rounded-[20px] p-5 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left">
-          Download
+          {t("btns.download")}
         </h1>
 
         {/* Close Window btn */}
@@ -58,7 +61,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ onClose }) => {
           </div>
 
           <button className="border-[1.5px] border-[#3D2278] text-[#3D2278] rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-all duration-300 hover:bg-[#3D2278] hover:text-white">
-          Download
+            {t("btns.download")}
           </button>
         </div>
       </div>

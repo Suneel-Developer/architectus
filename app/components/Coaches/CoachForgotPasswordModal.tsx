@@ -1,15 +1,19 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface DownloadModalProps {
   onClose: () => void;
 }
 
-const CoachForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => {
+const CoachForgotPasswordModal: React.FC<DownloadModalProps> = ({
+  onClose,
+}) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState<string>("");
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
   };
 
@@ -23,7 +27,7 @@ const CoachForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => 
 
       <div className="bg-white rounded-[20px] p-5 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left">
-          Forgot Password
+          {t("coaches.coachemodals.forgotpassword")}
         </h1>
 
         {/* Close Window btn */}
@@ -38,13 +42,13 @@ const CoachForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => 
         />
 
         <p className="mt-4 text-[#6D6D6D] text-left text-sm">
-          Please enter your email to reset the password
+          {t("coaches.coachemodals.forgotpassworddisc")}
         </p>
 
         <form className="gap-5 flex flex-col mt-8 gap-y-5">
           <input
             type="email"
-            placeholder="Enter Your Email"
+            placeholder={t("supportmodal.enteryouremail")}
             value={email}
             onChange={handleEmailChange}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
@@ -57,7 +61,7 @@ const CoachForgotPasswordModal: React.FC<DownloadModalProps> = ({ onClose }) => 
             }`}
             disabled={!email}
           >
-            Reset Password
+            {t("btns.resetpassword")}
           </button>
         </form>
       </div>

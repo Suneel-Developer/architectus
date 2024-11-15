@@ -1,7 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const ModifyVerificatioModal = ({ onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-5">
       {/* If Click outside the white box then Window Close  */}
@@ -34,7 +37,7 @@ const ModifyVerificatioModal = ({ onClose }) => {
           />
           
           <p className="text-base text-[#0F0A19B2] text-center">
-            Architectus Ai is analyzing your documentation
+            {t("modifymodals.verifydisc")}
           </p>
         </div>
       </div>

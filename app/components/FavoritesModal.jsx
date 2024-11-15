@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 
-const FavoriteModal = ({ onClose, onCreate }) => {
+const FavoriteModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const [isRecording, setIsRecording] = useState(false);
   const [text, setText] = useState("");
   const recognitionRef = useRef(null);
@@ -68,13 +70,10 @@ const FavoriteModal = ({ onClose, onCreate }) => {
 
       <div className="bg-white rounded-[20px] p-6 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left mb-4">
-          Favorites
+          {t("favoritesmodal.title")}
         </h1>
 
-        <p className="text-sm text-[#0F0A19B2]">
-          Please describe in as much detail as possible what you intend to
-          create, update, or modify.
-        </p>
+        <p className="text-sm text-[#0F0A19B2]">{t("favoritesmodal.disc")}</p>
 
         <Image
           src="/assets/icons/close-icon.svg"
@@ -89,7 +88,7 @@ const FavoriteModal = ({ onClose, onCreate }) => {
         <div className="relative my-6 md:my-8">
           <textarea
             value={text}
-            placeholder="Type"
+            placeholder={t("favoritesmodal.type")}
             onChange={(e) => setText(e.target.value)}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] pl-5 pt-4 border-[#E7E7E7] text-[#0F0A19] w-full rounded-xl bg-[#FAFAFA] h-[140px]"
           ></textarea>
@@ -120,17 +119,17 @@ const FavoriteModal = ({ onClose, onCreate }) => {
 
         <div className="flex flex-col gap-5 items-center gap-y-5">
           <button
-            onClick={(() => router.push("/podcasts"))}
+            onClick={() => router.push("/podcasts")}
             className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
           >
-            Create
+            {t("btns.create")}
           </button>
 
           <button
             onClick={onClose}
             className="border-[1.5px] border-[#3D2278] text-[#3D2278] rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-all duration-300 hover:bg-[#3D2278] hover:text-white"
           >
-            Cancel
+            {t("btns.cancel")}
           </button>
         </div>
       </div>

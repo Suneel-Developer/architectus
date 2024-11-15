@@ -5,6 +5,8 @@ import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { Pagination } from "swiper/modules";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 import Reviews from "../Reviews";
@@ -37,6 +39,7 @@ const plansdata = [
 ];
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
@@ -69,16 +72,15 @@ const Hero: React.FC = () => {
     setIsVisibleReviews(!isVisibleReviews);
   };
 
+  //  Open Share Modal
+  const handleShareModal = () => {
+    setIsShareModalOpen(true);
+  };
 
-    //  Open Share Modal
-    const handleShareModal = () => {
-      setIsShareModalOpen(true);
-    };
-  
-    //  Close Share Modal
-    const handleCloseShareModal = () => {
-      setIsShareModalOpen(false);
-    };
+  //  Close Share Modal
+  const handleCloseShareModal = () => {
+    setIsShareModalOpen(false);
+  };
 
   return (
     <section className="px-5 pb-10 md:pb-20">
@@ -95,26 +97,23 @@ const Hero: React.FC = () => {
             />
 
             <p className="text-sm md:text-base text-[#0F0A19] max-w-[34rem] flex-1">
-              It&apos;s time to create your workout plan. Be as specific as
-              possible — consider your sport discipline, training method,
-              exercise type, skill level, full-body workouts, or focus on
-              specific muscle groups.
+              {t("plan.disc")}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 max-w-[300px] w-full gap-3">
+          <div className="grid grid-cols-2 max-w-[350px] w-full gap-3">
             <button
               onClick={handleCreateClick}
               className="bg-[#3D2278] text-white rounded-[10px]  h-12 text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
             >
-              Create
+              {t("btns.create")}
             </button>
 
             <button
               onClick={handleShareModal}
               className="border-2 border-[#3D2278] rounded-[10px] h-12 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
             >
-              Share
+              {t("btns.share")}
             </button>
           </div>
         </div>
@@ -157,16 +156,16 @@ const Hero: React.FC = () => {
                     {plan.name}
                   </h3>
 
-                  <div className="grid grid-cols-2 gap-2 max-w-[300px] w-full mx-auto mt-8">
+                  <div className="grid grid-cols-2 gap-2 max-w-[350px] w-full mx-auto mt-8">
                     <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-                      Save
+                      {t("btns.save")}
                     </button>
 
                     <button
                       onClick={handleShowReviews}
                       className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
                     >
-                      Reviews (4)
+                      {t("btns.reviews")} (4)
                     </button>
                   </div>
                 </div>
@@ -192,8 +191,8 @@ const Hero: React.FC = () => {
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
         )}
 
-         {/* Share Modal */}
-         {isShareModalOpen && <ShareModal onClose={handleCloseShareModal} />}
+        {/* Share Modal */}
+        {isShareModalOpen && <ShareModal onClose={handleCloseShareModal} />}
       </div>
     </section>
   );

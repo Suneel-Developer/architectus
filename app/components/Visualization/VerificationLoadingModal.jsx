@@ -1,7 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const VerificationLoadingModal = ({ onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-5">
       <div
@@ -30,7 +33,7 @@ const VerificationLoadingModal = ({ onClose }) => {
             className="animate-spin"
           />
           <p className="text-base text-[#0F0A19B2] text-center">
-            AI is analyzing your documentation
+            {t("createmodal.verifydisc")}
           </p>
         </div>
       </div>

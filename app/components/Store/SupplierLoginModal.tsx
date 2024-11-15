@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { LuEye } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 
 interface DownloadModalProps {
   onClose: () => void;
@@ -15,6 +16,7 @@ const SupplierLoginModal: React.FC<DownloadModalProps> = ({
   onSignup,
   onForgotPassword,
 }) => {
+  const { t } = useTranslation();
   const [isPasswordVisible, setIsPasswordVisible] = useState<Boolean>(false);
 
   const togglePasswordVisibility = () => {
@@ -31,7 +33,7 @@ const SupplierLoginModal: React.FC<DownloadModalProps> = ({
 
       <div className="bg-white rounded-[20px] p-5 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left">
-          Supplier Login
+          {t("store.loginmodal.supplierlogin")}
         </h1>
 
         {/* Close Window btn */}
@@ -46,20 +48,20 @@ const SupplierLoginModal: React.FC<DownloadModalProps> = ({
         />
 
         <p className="mt-4 text-[#6D6D6D] text-left text-sm">
-          Access your dashboard to manage workouts and track progress.
+          {t("store.loginmodal.disc")}
         </p>
 
         <form className="gap-5 flex flex-col mt-8 gap-y-5">
           <input
             type="email"
-            placeholder="Enter Your Email"
+            placeholder={t("supportmodal.enteryouremail")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
           />
 
           <div className="relative">
             <input
               type={isPasswordVisible ? "text" : "password"}
-              placeholder="Enter Your Password"
+              placeholder={t("coaches.coachemodals.enteryourpassword")}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
             />
             <button
@@ -79,20 +81,20 @@ const SupplierLoginModal: React.FC<DownloadModalProps> = ({
             onClick={onForgotPassword}
             className="bg-transparent border-none outline-none text-sm font-semibold text-[#3D2278] text-left"
           >
-            Forgot Password
+            {t("coaches.coachemodals.forgotpassword")}
           </button>
 
           <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-            Login
+            {t("btns.login")}
           </button>
 
           <p className="text-center text-sm text-[#0F0A19B2]">
-            Don&apos;t have account ?&nbsp;
+            {t("coaches.coachemodals.donthaveaccount")}&nbsp;
             <span
               onClick={onSignup}
               className="text-sm cursor-pointer font-semibold text-[#3D2278]"
             >
-              Sign Up
+              {t("btns.signup")}
             </span>
           </p>
         </form>

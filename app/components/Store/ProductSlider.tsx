@@ -4,9 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { Pagination } from "swiper/modules";
-import SupplierPlan from "./SupplierPlan";
-import Reviews from "../Reviews";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+
+import Reviews from "../Reviews";
 
 const products = [
   {
@@ -16,7 +17,7 @@ const products = [
     brand: "4Endurance Pro",
     originalPrice: "€29,90",
     discountedPrice: "€19,43",
-    link: "https://www.trufit.eu/lv/4endurance-pro-loaded#168=422"
+    link: "https://www.trufit.eu/lv/4endurance-pro-loaded#168=422",
   },
   {
     id: 2,
@@ -25,7 +26,7 @@ const products = [
     brand: "Smartys",
     originalPrice: "€39,90",
     discountedPrice: "€25,93",
-    link: "https://www.trufit.eu/lv/4endurance-pro-pro-flex#168=1256"
+    link: "https://www.trufit.eu/lv/4endurance-pro-pro-flex#168=1256",
   },
   {
     id: 3,
@@ -34,7 +35,7 @@ const products = [
     brand: "Bowflex",
     originalPrice: "€2,49",
     discountedPrice: "€1,62",
-    link: "https://www.trufit.eu/lv/4endurance-pro-l-carnitine-energy-gel#168=1288"
+    link: "https://www.trufit.eu/lv/4endurance-pro-l-carnitine-energy-gel#168=1288",
   },
   {
     id: 4,
@@ -43,23 +44,14 @@ const products = [
     brand: "4Endurance Pro",
     originalPrice: "€24,90",
     discountedPrice: "€16,18",
-    link: "https://www.trufit.eu/lv/4endurance-pro-acetyl-l-carnitine#168=422"
+    link: "https://www.trufit.eu/lv/4endurance-pro-acetyl-l-carnitine#168=422",
   },
-
 ];
 
 const ProductSlider: React.FC = () => {
-  const [isOpenSupplierPlanModal, setIsOpenSupplierPlanModal] =
-    useState<Boolean>(false);
+  const { t } = useTranslation();
   const [isVisibleReviews, setIsVisibleReviews] = useState<Boolean>(false);
 
-  const handleOpenSupplierPlanModal = () => {
-    setIsOpenSupplierPlanModal(true);
-  };
-
-  const handleCloseSupplierPlanModal = () => {
-    setIsOpenSupplierPlanModal(false);
-  };
 
   const handleShowReviews = () => {
     setIsVisibleReviews(!isVisibleReviews);
@@ -108,19 +100,19 @@ const ProductSlider: React.FC = () => {
 
                 <div className="flex flex-col gap-4 mb-5">
                   <div className="flex justify-between gap-2">
-                    <p className="text-[#0F0A19] text-sm">Brand:</p>
+                    <p className="text-[#0F0A19] text-sm">{t("store.brand")}:</p>
                     <p className="text-sm font-semibold text-[#0F0A19]">
                       {product.brand}
                     </p>
                   </div>
                   <div className="flex justify-between gap-2">
-                    <p className="text-[#0F0A19] text-sm">Price:</p>
+                    <p className="text-[#0F0A19] text-sm">{t("store.price")}:</p>
                     <p className="text-sm text-[#FF3A5E] line-through font-medium">
                       {product.originalPrice}
                     </p>
                   </div>
                   <div className="flex justify-between gap-2">
-                    <p className="text-[#0F0A19] text-sm">Discounted Price:</p>
+                    <p className="text-[#0F0A19] text-sm">{t("store.discountedprice")}:</p>
                     <p className="text-sm font-bold text-[#3D2278]">
                       {product.discountedPrice}
                     </p>
@@ -133,17 +125,17 @@ const ProductSlider: React.FC = () => {
                     target="_blank"
                     className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 flex items-center justify-center text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
                   >
-                    Buy Now
+                    {t("btns.buynow")}
                   </Link>
                   <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-                    Save
+                    {t("btns.save")}
                   </button>
 
                   <button
                     onClick={handleShowReviews}
                     className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
                   >
-                    Reviews (4)
+                    {t("btns.reviews")} (4)
                   </button>
                 </div>
               </div>
@@ -156,10 +148,6 @@ const ProductSlider: React.FC = () => {
         <div className="px-4 my-16">
           <Reviews />
         </div>
-      )}
-
-      {isOpenSupplierPlanModal && (
-        <SupplierPlan onClose={handleCloseSupplierPlanModal} />
       )}
     </div>
   );

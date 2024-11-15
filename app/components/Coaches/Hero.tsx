@@ -1,17 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
+
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
-import Image from "next/image";
-import CoachLoginModal from "./CoachLoginModal";
-import CoachRegisterModal from "./CoachRegisterModal";
-import CoachForgotPasswordModal from "./CoachForgotPasswordModal";
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
-
 
   // Open Create modal
   const handleCreateClick = () => {
@@ -35,7 +34,6 @@ const Hero: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  
   return (
     <section className="px-5">
       <div className="max-w-[1180px] w-full mx-auto">
@@ -50,11 +48,8 @@ const Hero: React.FC = () => {
             />
 
             <p className="text-xs md:text-sm text-[#0F0A19]/60 max-w-[34rem] flex-1">
-              Search for workout&nbsp;
-              <span className="font-semibold">
-                coach, sport discipline, training method, exercise type, skill
-                level.
-              </span>
+              {t("coaches.searchforworkout")}&nbsp;
+              <span className="font-semibold">{t("coaches.disc")}</span>
             </p>
           </div>
 
@@ -62,7 +57,7 @@ const Hero: React.FC = () => {
             onClick={handleCreateClick}
             className="bg-[#3D2278] text-white rounded-[10px] w-full max-w-[150px] h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
           >
-            Search
+            {t("btns.search")}
           </button>
         </div>
 
@@ -77,8 +72,6 @@ const Hero: React.FC = () => {
         {isVerificationModalOpen && (
           <VerificationLoadingModal onClose={handleCloseVerificationModal} />
         )}
-
-        
       </div>
     </section>
   );

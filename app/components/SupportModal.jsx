@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 
 const SupportModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const [isRecording, setIsRecording] = useState(false);
   const [text, setText] = useState("");
   const recognitionRef = useRef(null);
@@ -66,13 +68,10 @@ const SupportModal = ({ onClose }) => {
 
       <div className="bg-white rounded-[20px] p-6 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left mb-4">
-          Create Support Ticket
+          {t("supportmodal.title")}
         </h1>
 
-        <p className="text-sm text-[#0F0A19B2]">
-          Please describe in as much detail as possible what you intend to
-          create, update, or modify.
-        </p>
+        <p className="text-sm text-[#0F0A19B2]">{t("supportmodal.disc")}</p>
 
         <Image
           src="/assets/icons/close-icon.svg"
@@ -87,20 +86,20 @@ const SupportModal = ({ onClose }) => {
         <div className="mt-6 md:mt-8">
           <input
             type="text"
-            placeholder="Enter Your Name"
+            placeholder={t("supportmodal.enteryourname")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="email"
-            placeholder="Enter Your Email"
+            placeholder={t("supportmodal.enteryouremail")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA] my-3"
           />
 
           <div className="relative mb-7">
             <textarea
               value={text}
-              placeholder="Type"
+              placeholder={t("favoritesmodal.type")}
               onChange={(e) => setText(e.target.value)}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] pl-5 pt-4 border-[#E7E7E7] text-[#0F0A19] w-full rounded-xl bg-[#FAFAFA] h-[140px]"
             ></textarea>
@@ -131,14 +130,14 @@ const SupportModal = ({ onClose }) => {
 
           <div className="flex flex-col items-center gap-y-4">
             <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-              Create
+            {t("btns.create")}
             </button>
 
             <button
               onClick={onClose}
               className="border-[1.5px] border-[#3D2278] text-[#3D2278] rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-all duration-300 hover:bg-[#3D2278] hover:text-white"
             >
-              Cancel
+              {t("btns.cancel")}
             </button>
           </div>
         </div>

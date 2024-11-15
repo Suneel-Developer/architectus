@@ -1,10 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface SupplierPlanModalProps {
   onClose: () => void;
 }
 const SupplierPlan: React.FC<SupplierPlanModalProps> = ({ onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-5">
       {/* If Click outside the white box then Window Close  */}
@@ -15,7 +18,7 @@ const SupplierPlan: React.FC<SupplierPlanModalProps> = ({ onClose }) => {
 
       <div className="bg-white rounded-[20px] p-4 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left">
-          Supplier Plan
+          {t("store.supplierplan.supplierplan")}
         </h1>
 
         {/* Close Window btn */}
@@ -30,19 +33,18 @@ const SupplierPlan: React.FC<SupplierPlanModalProps> = ({ onClose }) => {
         />
 
         <p className="mt-4 text-sm text-[#0F0A19B2]">
-          Don&apos;t miss out grab our exclusive discount before the official
-          launch!
+          {t("store.supplierplan.disc")}
         </p>
 
         <div className="supplierPayment p-5 md:p-[30px] rounded-2xl md:rounded-[20px] mt-5 md:mt-8 mb-5">
           <h2 className="text-[#0F0A19] text-xl md:text-2xl font-semibold">
-            Premium Supplier Plan
+            {t("store.supplierplan.premiumsupplierplan")}
           </h2>
 
           <ul className="mt-[30px] flex flex-col gap-5">
             <li className="flex items-center justify-between gap-1">
               <p className="text-sm md:text-base text-[#0F0A19]">
-                Original Price:
+                {t("store.supplierplan.originalprice")}:
               </p>
               <span className="text-base md:text-lg text-[#FF3A5E] line-through font-medium">
                 €19,90
@@ -50,7 +52,7 @@ const SupplierPlan: React.FC<SupplierPlanModalProps> = ({ onClose }) => {
             </li>
             <li className="flex items-center justify-between gap-1">
               <p className="text-sm md:text-base text-[#0F0A19]">
-                Pre Launch Discount:
+                {t("store.supplierplan.prelaunchdiscount")}:
               </p>
               <span className="text-base md:text-lg text-[#0F0A19] font-medium">
                 50% Off
@@ -58,7 +60,7 @@ const SupplierPlan: React.FC<SupplierPlanModalProps> = ({ onClose }) => {
             </li>
             <li className="flex items-center justify-between gap-1">
               <p className="text-sm md:text-base text-[#0F0A19]">
-                Final Price:
+                {t("store.supplierplan.finalprice")}:
               </p>
               <span className="text-2xl md:text-3xl text-[#3D2278] font-bold">
                 €9,95
@@ -69,11 +71,11 @@ const SupplierPlan: React.FC<SupplierPlanModalProps> = ({ onClose }) => {
 
         <div className="flex flex-col gap-4">
           <button className="bg-[#3D2278] text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-            Pay Now
+            {t("btns.paynow")}
           </button>
 
           <button className="border-[1.5px] border-[#3D2278] text-[#3D2278] rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-all duration-300 hover:bg-[#3D2278] hover:text-white">
-            Edit Details
+            {t("btns.editdetails")}
           </button>
         </div>
       </div>

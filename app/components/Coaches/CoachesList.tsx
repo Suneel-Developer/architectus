@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 import { MdOutlineTextsms } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
 import { FaPlay } from "react-icons/fa";
@@ -81,13 +82,14 @@ interface CoachesListProps {
 }
 
 const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
+  const { t } = useTranslation();
   const [visibleCoachId, setVisibleCoachId] = useState<number>(0);
   const [isShareModalVisible, setIsShareModalVisible] = useState<number | null>(
     null
   );
   const [isVisibleReviews, setIsVisibleReviews] = useState<boolean>(false);
-  const [isPlayingFirst, setIsPlayingFirst] = useState(false);
-  const [isPlayingSecond, setIsPlayingSecond] = useState(false);
+  const [isPlayingFirst, setIsPlayingFirst] = useState<boolean>(false);
+  const [isPlayingSecond, setIsPlayingSecond] = useState<boolean>(false);
   const videoRefFirst = useRef(null);
   const videoRefSecond = useRef(null);
 
@@ -331,7 +333,9 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
                   </div>
 
                   <div className="flex flex-col md:flex-row gap-5 items-start md:items-center">
-                    <h3 className="text-lg font-semibold">Language:</h3>
+                    <h3 className="text-lg font-semibold">
+                      {t("coaches.language")}:
+                    </h3>
 
                     <div className="flex gap-3 items-center">
                       <span className="bg-[#3D2278]/10 text-[#0F1017] text-sm rounded-[30px] px-4 py-[10px] flex items-center gap-2">
@@ -349,8 +353,11 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
                   </div>
 
                   <div className="flex flex-col md:flex-row gap-5 items-start md:items-center">
-                    <h3 className="text-lg font-semibold">Social Media:</h3>
+                    <h3 className="text-lg font-semibold">
+                      {t("coaches.socialmedia")}
+                    </h3>
 
+                    {/* Social Media ICons  */}
                     <div className="flex gap-4 items-center">
                       <Link
                         href="#"
@@ -408,19 +415,19 @@ const CoachesList: React.FC<CoachesListProps> = ({ showSingle = false }) => {
                   </div>
 
                   <div
-                    className={`grid grid-cols-2 mx-auto gap-3 max-w-[300px] w-full ${
+                    className={`grid grid-cols-2 mx-auto gap-3 max-w-[350px] w-full ${
                       isVisibleReviews ? "mb-10" : "mb-0"
                     }`}
                   >
                     <button className="bg-[#3D2278] text-white rounded-[10px] h-11 w-full text-center px-3 text-sm md:text-base font-medium transition-opacity duration-300 hover:opacity-90">
-                      Save
+                      {t("btns.save")}
                     </button>
 
                     <button
                       onClick={handleShowReviews}
                       className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
                     >
-                      Reviews (4)
+                      {t("btns.reviews")} (4)
                     </button>
                   </div>
                 </div>

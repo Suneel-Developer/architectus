@@ -30,7 +30,7 @@
     "**/*.tsx",
     "app/components/Visualization/CreateVisualisationModal.jsx",
     "app/components/SupportModal.jsx"
-, "app/components/FavoritesModal.jsx"  ],
+, "app/components/FavoritesModal.jsx", "app/[lang]/page.js"  ],
   "exclude": [
     "node_modules"
   ]

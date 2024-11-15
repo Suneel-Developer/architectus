@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface DownloadModalProps {
   onClose: () => void;
@@ -10,6 +11,7 @@ const SupplierRegisterModal: React.FC<DownloadModalProps> = ({
   onClose,
   onLogin,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-5 py-3">
       {/* If Click outside the white box then Window Close  */}
@@ -47,13 +49,10 @@ const SupplierRegisterModal: React.FC<DownloadModalProps> = ({
                 src="/assets/icons/upload-icon.svg"
               />
               <h3 className="mt-6 text-sm font-normal text-[#0B0B0B]">
-                <label
-                  htmlFor="file-upload"
-                  className="relative"
-                >
-                  <span>Drag and drop </span>
+                <label htmlFor="file-upload" className="relative">
+                  <span>{t("coaches.coachemodals.draganddrop")} </span>
                   <span className="text-[#3D2278] font-semibold">
-                    or browse
+                    {t("coaches.coachemodals.browse")}
                   </span>
                   <input
                     id="file-upload"
@@ -67,55 +66,55 @@ const SupplierRegisterModal: React.FC<DownloadModalProps> = ({
           </div>
 
           <p className="text-center font-semibold text-[#0F0A19] mb-3">
-            Upload Product, service or event image
+            {t("store.registermodal.uplaodproject")}
           </p>
 
           <input
             type="text"
-            placeholder="Title"
+            placeholder={t("coaches.coachemodals.inputtitle")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit"
           />
 
           <textarea
-            placeholder="Write a small description about your product or service such as product/service type, relevant sports categories, and available shipping countries."
+            placeholder={t("store.registermodal.disc")}
             className="border placeholder:text-sm resize-none placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="text"
-            placeholder="Brand Name"
+            placeholder={t("store.registermodal.brandname")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="text"
-            placeholder="Price"
+            placeholder={t("store.price")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="text"
-            placeholder="Discount Price"
+            placeholder={t("store.discountedprice")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="text"
-            placeholder="Website link"
+            placeholder={t("store.registermodal.Websitelink")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <button className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-            Continue
+            {t("btns.continue")}
           </button>
 
           <p className="text-center text-sm text-[#0F0A19B2]">
-            Already have an account?&nbsp;
+            {t("coaches.coachemodals.alreadyaccount")}&nbsp;
             <span
               onClick={onLogin}
               className="text-sm cursor-pointer font-semibold text-[#3D2278]"
             >
-              Login
+              {t("btns.login")}
             </span>
           </p>
         </form>

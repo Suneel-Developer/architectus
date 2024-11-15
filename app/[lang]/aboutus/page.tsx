@@ -1,12 +1,20 @@
+"use client";
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Image from "next/image";
+import Header from "../../components/Header";
 import ContactForm from "./ContactForm";
+import Footer from "../../components/Footer";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../../i18n";
+import useLanguage from "../../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 const AboutUs: React.FC = () => {
+  const { t } = useTranslation();
+  useLanguage();
+
   return (
-    <>
+    <I18nextProvider i18n={i18n}>
       <Header />
 
       <section className="workoutbg bg-no-repeat bg-center bg-cover relative px-5 py-10 md:py-20">
@@ -14,9 +22,9 @@ const AboutUs: React.FC = () => {
           <div className="order-2 md:order-1">
             <div className="hidden md:flex flex-col gap-6 md:gap-8">
               <h1 className="max-w-full text-4xl md:text-5xl lg:text-[64px] font-bold text-[#0F0A19] lg:max-w-2xl leading-[1.2]">
-                Contact&nbsp;
+                {t("aboutus.heading")}&nbsp;
                 <span className="relative">
-                  <span className="text-[#3D2278]">Us</span>
+                  <span className="text-[#3D2278]">{t("aboutus.us")}</span>
                   <img
                     src="/assets/contactline.webp"
                     alt="contactline"
@@ -26,8 +34,7 @@ const AboutUs: React.FC = () => {
               </h1>
 
               <p className="text-sm md:text-lg text-[#0F0A19] max-w-[530px] w-full md:mb-20">
-                We&apos;re here to help reach out with any questions or feedback and
-                we&apos;ll respond promptly!
+                {t("aboutus.disc")}
               </p>
             </div>
 
@@ -45,11 +52,10 @@ const AboutUs: React.FC = () => {
 
                 <div className="flex flex-col gap-[10px] flex-1">
                   <h2 className="text-base text-[#0F0A19] font-semibold">
-                    Get In Touch
+                    {t("aboutus.getintouch")}
                   </h2>
                   <p className="text-[#0F0A19B2] text-sm max-w-[387px] w-full">
-                    Need to contact us? We look forward to assisting you. Feel
-                    free to give us a call or use the contact form.
+                    {t("aboutus.disc2")}
                   </p>
                 </div>
               </div>
@@ -67,7 +73,7 @@ const AboutUs: React.FC = () => {
 
                 <div className="flex flex-col gap-[10px] flex-1">
                   <h2 className="text-base text-[#0F0A19] font-semibold">
-                    Address
+                    {t("aboutus.address")}
                   </h2>
                   <p className="text-[#0F0A19B2] text-sm max-w-[387px] w-full">
                     Klijānu iela 16, Apartment No. 97, LV-1013
@@ -88,7 +94,7 @@ const AboutUs: React.FC = () => {
 
                 <div className="flex flex-col gap-[10px] flex-1">
                   <h2 className="text-base text-[#0F0A19] font-semibold">
-                    Email
+                    {t("aboutus.email")}
                   </h2>
                   <p className="text-[#0F0A19B2] text-sm max-w-[387px] w-full">
                     workout-creator@proton.me
@@ -100,9 +106,9 @@ const AboutUs: React.FC = () => {
 
           <div className="flex md:hidden flex-col gap-6 md:gap-8">
             <h1 className="max-w-full text-4xl md:text-5xl lg:text-[64px] font-bold text-[#0F0A19] lg:max-w-2xl leading-[1.2]">
-              Contact&nbsp;
+              {t("aboutus.heading")}&nbsp;
               <span className="relative">
-                <span className="text-[#3D2278]">Us</span>
+                <span className="text-[#3D2278]">{t("aboutus.us")}</span>
                 <img
                   src="/assets/contactline.webp"
                   alt="contactline"
@@ -112,18 +118,17 @@ const AboutUs: React.FC = () => {
             </h1>
 
             <p className="text-sm md:text-lg text-[#0F0A19] max-w-[530px] w-full md:mb-20">
-              We&apos;re here to help reach out with any questions or feedback and
-              we&apos;ll respond promptly!
+              {t("aboutus.disc")}
             </p>
           </div>
 
           <div className="order-1 md:order-2">
-          <ContactForm />
+            <ContactForm />
           </div>
         </div>
       </section>
       <Footer />
-    </>
+    </I18nextProvider>
   );
 };
 

@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface UploadStoreModalProps {
   onClose: () => void;
 }
 
 const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
+  const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -66,11 +68,11 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
 
         <div className="h-[90vh] overflow-y-scroll overflow-x-hidden formscrollbar">
           <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left mb-4">
-            Upload
+            {t("store.uploadstore.upload")}
           </h1>
 
           <p className="text-sm text-[#0F0A19B2]">
-            Add your documents here, and you can upload up to 5 files max
+            {t("store.uploadstore.disc")}
           </p>
 
           <div className="relative borderUpload py-5 md:py-8 mt-6">
@@ -94,9 +96,9 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
                   />
                   <h3 className="mt-6 text-sm font-normal text-[#0B0B0B]">
                     <label htmlFor="file-upload" className="relative">
-                      <span>Drag and drop or </span>
+                      <span>{t("coaches.coachemodals.draganddrop")} </span>
                       <span className="text-[#3D2278] font-semibold">
-                        browse
+                        {t("coaches.coachemodals.browse")}
                       </span>
                     </label>
                   </h3>
@@ -111,13 +113,13 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
                   {progress}%
                 </div>
                 <p className="text-[#0F0A19B2] text-center text-base my-[18px]">
-                  Uploading...
+                  {t("store.uploadstore.uploading")}
                 </p>
                 <button
                   className="border border-[#CECECE] text-[#0F0A19B2] rounded-lg py-[7px] px-4 text-center text-xs font-medium mx-auto"
                   onClick={handleCancel}
                 >
-                  Cancel
+                  {t("btns.cancel")}
                 </button>
               </div>
             )}
@@ -125,10 +127,10 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
 
           <div className="flex flex-col md:flex-row justify-between gap-1 mt-[10px] mb-7">
             <p className="text-sm text-[#0F0A19B2]">
-              Maximum Size: 280 x 90 px
+              {t("store.uploadstore.maximumsize")}: 280 x 90 px
             </p>
             <p className="text-sm text-[#0F0A19B2]">
-              White or transparent background
+              {t("store.uploadstore.bgcolor")}
             </p>
           </div>
 
@@ -165,37 +167,37 @@ const UploadStoreModal: React.FC<UploadStoreModalProps> = ({ onClose }) => {
           <div className="flex flex-col gap-y-4">
             <input
               type="text"
-              placeholder="Enter Your Company Name"
+              placeholder={t("store.uploadstore.companyname")}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] w-full"
             />
 
             <input
               type="text"
-              placeholder="Enter Your Phone"
+              placeholder={t("store.uploadstore.enteryourphone")}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
             />
 
             <input
               type="text"
-              placeholder="Enter Your Website"
+              placeholder={t("store.uploadstore.enteryourwebsite")}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
             />
 
             <input
               type="text"
-              placeholder="Enter Your Fiscal Number"
+              placeholder={t("store.uploadstore.fiscalnumber")}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
             />
 
             <button className="bg-[#3D2278] mt-4 text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-              Submit Request
+              {t("btns.submitrequest")}
             </button>
 
             <button
               onClick={onClose}
               className="border-[1.5px] border-[#3D2278] text-[#3D2278] rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-all duration-300 hover:bg-[#3D2278] hover:text-white"
             >
-              Cancel
+              {t("btns.cancel")}
             </button>
           </div>
         </div>

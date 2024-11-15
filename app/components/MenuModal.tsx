@@ -2,6 +2,8 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
+
 import UserLoginModal from "./UserForm/UserLoginModal";
 import UserRegisterModal from "./UserForm/UserRegisterModal";
 import UserForgotPasswordModal from "./UserForm/UserForgotPasswordModal";
@@ -14,6 +16,8 @@ import VerificationLoadingModal from "./Visualization/VerificationLoadingModal";
 import CaptchaModal from "./CaptchaModal";
 
 const MenuModal = () => {
+  const { t, i18n } = useTranslation();
+  const [currentLang, setCurrentLang] = useState("en");
   const [isOpenMenuModal, setIsOpenMenuModal] = useState<boolean>(false);
   useState<boolean>(false);
   const [isUserLoginModalOpen, setIsUserLoginModalOpen] =
@@ -164,6 +168,24 @@ const MenuModal = () => {
     };
   }, [isOpenMenuModal]);
 
+  useEffect(() => {
+    const storedLang = localStorage.getItem("selectedLanguage");
+    const langFromPath = window.location.pathname.split("/")[1];
+
+    let finalLang = storedLang || "en";
+
+    if (langFromPath === "pt" || langFromPath === "br") {
+      finalLang = "pt-BR";
+    } else if (langFromPath === "ru") {
+      finalLang = "ru";
+    }
+
+    setCurrentLang(finalLang);
+    i18n.changeLanguage(finalLang);
+  }, [i18n]);
+
+  const createLocalizedPath = (path: any) => `/${currentLang}${path}`;
+
   return (
     <div>
       <div className="flex justify-center">
@@ -231,55 +253,55 @@ const MenuModal = () => {
                 onClick={handleCoachRegisterModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
-                Create
+                {t("btns.create")}
               </button>
 
               <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
-                Posts
+                {t("btns.posts")}
               </button>
 
               <button
-                onClick={() => router.push("/reviews")}
+                onClick={() => router.push(createLocalizedPath("/reviews"))}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
-                Reviews
+                {t("btns.reviews")}
               </button>
 
               <button
                 onClick={handleFavoritesModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
-                Favorites
+                {t("btns.favorites")}
               </button>
 
               <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
-                Calls
+                {t("btns.calls")}
               </button>
 
               <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
-                Messages
+                {t("btns.messages")}
               </button>
 
               <button className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white">
-                Settings
+                {t("btns.settings")}
               </button>
 
               <button
                 onClick={handleSupportModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
-                Support
+                {t("btns.support")}
               </button>
 
               <button
                 onClick={handleUserRegisterModal}
                 className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
               >
-                Register
+                {t("btns.register")}
               </button>
 
               <button className="bg-red-700 rounded-[10px] h-11 w-full text-center px-3 text-white text-sm md:text-base font-medium transition-colors duration-300 hover:bg-opacity-80">
-                Log Out
+                {t("btns.logout")}
               </button>
             </div>
           </div>

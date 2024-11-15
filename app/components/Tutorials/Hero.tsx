@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import CreateVisualisationModal from "../Visualization/CreateVisualisationModal";
 import VerificationLoadingModal from "../Visualization/VerificationLoadingModal";
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
@@ -45,11 +47,8 @@ const Hero: React.FC = () => {
             />
 
             <p className="text-xs md:text-sm text-[#0F0A19]/60 max-w-[34rem] flex-1">
-              Search for workout&nbsp;
-              <span className="font-semibold">
-                coach, sport discipline, training method, exercise type, skill
-                level, full body, or focus on a specific muscle group.
-              </span>
+              {t("coaches.searchforworkout")}&nbsp;
+              <span className="font-semibold">{t("coaches.disc")}</span>
             </p>
           </div>
 
@@ -58,7 +57,7 @@ const Hero: React.FC = () => {
               onClick={handleCreateClick}
               className="bg-[#3D2278] text-white rounded-[10px] h-12 text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
             >
-              Search
+              {t("btns.search")}
             </button>
           </div>
         </div>

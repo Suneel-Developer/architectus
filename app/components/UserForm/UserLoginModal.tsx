@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 import { LuEye } from "react-icons/lu";
 
 interface DownloadModalProps {
@@ -16,6 +17,7 @@ const UserLoginModal: React.FC<DownloadModalProps> = ({
   onForgotPassword,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<Boolean>(false);
+  const { t } = useTranslation();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -31,7 +33,7 @@ const UserLoginModal: React.FC<DownloadModalProps> = ({
 
       <div className="bg-white rounded-[20px] p-5 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left">
-          Login
+          {t("btns.login")}
         </h1>
 
         {/* Close Window btn */}
@@ -48,14 +50,14 @@ const UserLoginModal: React.FC<DownloadModalProps> = ({
         <form className="gap-5 flex flex-col mt-8 gap-y-5">
           <input
             type="email"
-            placeholder="Enter Your Email"
+            placeholder={t("supportmodal.enteryouremail")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
           />
 
           <div className="relative">
             <input
               type={isPasswordVisible ? "text" : "password"}
-              placeholder="Enter Your Password"
+              placeholder={t("coaches.coachemodals.enteryourpassword")}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
             />
             <button
@@ -75,20 +77,20 @@ const UserLoginModal: React.FC<DownloadModalProps> = ({
             onClick={onForgotPassword}
             className="bg-transparent border-none outline-none text-sm font-semibold text-[#3D2278] text-left"
           >
-            Forgot Password
+            {t("coaches.coachemodals.forgotpassword")}
           </button>
 
           <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-            Login
+            {t("btns.login")}
           </button>
 
           <p className="text-center text-sm text-[#0F0A19B2]">
-            Don&apos;t have account ?&nbsp;
+            {t("coaches.coachemodals.donthaveaccount")}&nbsp;
             <span
               onClick={onSignup}
               className="text-sm cursor-pointer font-semibold text-[#3D2278]"
             >
-              Sign Up
+              {t("btns.signup")}
             </span>
           </p>
         </form>

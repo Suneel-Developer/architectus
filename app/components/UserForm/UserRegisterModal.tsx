@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface DownloadModalProps {
   onClose: () => void;
@@ -13,6 +14,7 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
   onLogin,
   onCaptcha,
 }) => {
+  const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -39,7 +41,7 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
 
       <div className="bg-white rounded-[20px] p-5 md:p-7 w-full mx-auto max-w-[600px] relative">
         <h1 className="font-bold text-xl md:text-2xl text-[#0B0B0B] text-left">
-          Register
+          {t("btns.register")}
         </h1>
 
         {/* Close Window btn */}
@@ -94,31 +96,31 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
             </div>
 
             <h2 className="text-base font-semibold text-[#0F0A19] mt-4">
-              Upload your profile
+              {t("usermodals.uploadyourprofile")}
             </h2>
           </div>
 
           <input
             type="text"
-            placeholder="Username"
+            placeholder={t("usermodals.username")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="email"
-            placeholder="Email address"
+            placeholder={t("usermodals.emailaddress")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="password"
-            placeholder="Create password"
+            placeholder={t("usermodals.createpassword")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           <input
             type="password"
-            placeholder="Confirm Password"
+            placeholder={t("usermodals.confirmpassword")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
@@ -127,16 +129,16 @@ const UserRegisterModal: React.FC<DownloadModalProps> = ({
             onClick={onCaptcha}
             className="bg-[#3D2278] text-white rounded-[10px] w-full h-12 md:h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
           >
-            Continue
+            {t("btns.continue")}
           </button>
 
           <p className="text-center text-sm text-[#0F0A19B2]">
-            Already have an account?&nbsp;
+            {t("coaches.coachemodals.alreadyaccount")}&nbsp;
             <span
               onClick={onLogin}
               className="text-sm cursor-pointer font-semibold text-[#3D2278]"
             >
-              Login
+              {t("btns.login")}
             </span>
           </p>
         </form>

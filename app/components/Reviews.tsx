@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import ReviewsForm from "./ReviewsForm";
 
@@ -44,6 +45,7 @@ const reviewsData = [
 ];
 
 const Reviews: React.FC = () => {
+  const { t } = useTranslation();
   const [visibleReviews, setVisibleReviews] = useState(3);
 
   const handleLoadMore = () => {
@@ -55,7 +57,7 @@ const Reviews: React.FC = () => {
       <div>
         <div className="mb-3">
           <h2 className="text-2xl font-semibold text-[#0F0A19]">
-            Reviews <span>({reviewsData.length})</span>
+            {t("btns.reviews")} <span>({reviewsData.length})</span>
           </h2>
         </div>
 
@@ -113,7 +115,7 @@ const Reviews: React.FC = () => {
                 height={16}
                 loading="lazy"
               />
-              <span>Load more</span>
+              <span>{t("btns.loadmore")}</span>
             </button>
           </div>
         )}

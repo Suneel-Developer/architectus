@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import SupplierRegisterModal from "../Store/SupplierRegisterModal";
@@ -15,6 +16,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
   onLogin,
   onCaptcha,
 }) => {
+  const { t } = useTranslation();
   const [videoSrc1, setVideoSrc1] = useState(null);
   const [videoSrc2, setVideoSrc2] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -75,17 +77,19 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             <select
               onClick={() => setIsOpen((prev) => !prev)}
               onChange={handleOpenSupplierRegisterModal}
-              onBlur={() => setIsOpen(false)} // Optional: closes when the focus is lost
+              onBlur={() => setIsOpen(false)}
               className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit cursor-pointer appearance-none w-full"
-              defaultValue="Type of content"
+              defaultValue={t("coaches.coachemodals.typeofcontent")}
             >
-              <option value="Type of content" disabled>
-                Type of content
+              <option value="Type of content">
+                {t("coaches.coachemodals.typeofcontent")}
               </option>
-              <option value="Coach">Coach</option>
-              <option value="Tutorials">Tutorials</option>
-              <option value="Podcast">Podcast</option>
-              <option value="Product /service">Product /service</option>
+              <option value="Coach">{t("coaches.coachemodals.coach")}</option>
+              <option value="Tutorials">{t("tavtabs.tutorials")}</option>
+              <option value="Podcast">{t("tavtabs.podcasts")}</option>
+              <option value="Product /service">
+                {t("coaches.coachemodals.productservices")}
+              </option>
             </select>
             <MdKeyboardArrowDown
               className={`absolute right-4 top-1/2 transform -translate-y-1/2 transition-transform duration-300 text-2xl ${
@@ -107,7 +111,7 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
 
           {/* Discription textarea  */}
           <textarea
-            placeholder="Write a small description about your sport discipline, training method, exercise type, skill level."
+            placeholder={t("coaches.coachemodals.textareadisc")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
           />
 
@@ -132,8 +136,10 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                     src="/assets/icons/video-camera.svg"
                   />
                   <h3 className="mt-6 text-sm font-normal text-[#0B0B0B]">
-                    <span>Drag and drop or </span>
-                    <span className="text-[#3D2278] font-semibold">browse</span>
+                    <span>{t("coaches.coachemodals.draganddrop")}</span>
+                    <span className="text-[#3D2278] font-semibold">
+                      {t("coaches.coachemodals.browse")}
+                    </span>
                   </h3>
                 </div>
               </div>
@@ -157,12 +163,12 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             <div className="w-full">
               <input
                 type="text"
-                placeholder="Title"
+                placeholder={t("coaches.coachemodals.inputtitle")}
                 className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 w-full mb-4 py-4 h-fit border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
               />
 
               <textarea
-                placeholder="Enter Description"
+                placeholder={t("coaches.coachemodals.enterdescription")}
                 className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full h-fit min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
               />
             </div>
@@ -189,8 +195,10 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
                     src="/assets/icons/video-camera.svg"
                   />
                   <h3 className="mt-6 text-sm font-normal text-[#0B0B0B]">
-                    <span>Drag and drop or </span>
-                    <span className="text-[#3D2278] font-semibold">browse</span>
+                    <span>{t("coaches.coachemodals.draganddrop")} </span>
+                    <span className="text-[#3D2278] font-semibold">
+                      {t("coaches.coachemodals.browse")}
+                    </span>
                   </h3>
                 </div>
               </div>
@@ -214,12 +222,12 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             <div className="w-full">
               <input
                 type="text"
-                placeholder="Title"
+                placeholder={t("coaches.coachemodals.inputtitle")}
                 className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 w-full mb-4 py-4 h-fit border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA]"
               />
 
               <textarea
-                placeholder="Enter Description"
+                placeholder={t("coaches.coachemodals.enterdescription")}
                 className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full h-fit min-h-[140px] rounded-[10px] bg-[#FAFAFA]"
               />
             </div>
@@ -228,35 +236,35 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
           {/* Enter your Language  */}
           <input
             type="text"
-            placeholder="Language"
+            placeholder={t("coaches.language")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 rounded-[10px] bg-[#FAFAFA] h-fit"
           />
 
           {/* Enter Your Webiste link  */}
           <input
             type="text"
-            placeholder="Add your website link"
+            placeholder={t("coaches.coachemodals.addwebsitelink")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           {/* Inter Instagram ID  */}
           <input
             type="text"
-            placeholder="Instagram"
+            placeholder={t("coaches.coachemodals.instagram")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           {/* Enter Facebook ID  */}
           <input
             type="text"
-            placeholder="Facebook"
+            placeholder={t("coaches.coachemodals.facebook")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
           {/* Enter YouTube ID  */}
           <input
             type="text"
-            placeholder="YouTube"
+            placeholder={t("coaches.coachemodals.youTube")}
             className="border placeholder:text-sm placeholder:text-[#9D9D9D] px-5 py-4 border-[#E7E7E7] flex-1 w-full rounded-[10px] bg-[#FAFAFA]"
           />
 
@@ -265,16 +273,16 @@ const CoachRegisterModal: React.FC<CoachRegisterModalProps> = ({
             onClick={onCaptcha}
             className="bg-[#3D2278] mt-3 text-white rounded-[10px] w-full min-h-12 md:min-h-[52px] text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90"
           >
-            Register
+            {t("btns.register")}
           </button>
 
           <p className="text-center text-sm text-[#0F0A19B2]">
-            Already have an account?&nbsp;
+            {t("coaches.coachemodals.alreadyaccount")}&nbsp;
             <span
               onClick={onLogin}
               className="text-sm cursor-pointer font-semibold text-[#3D2278]"
             >
-              Login
+              {t("btns.login")}
             </span>
           </p>
         </form>

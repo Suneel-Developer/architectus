@@ -4,8 +4,10 @@ import CreateVisualisationModal from "./CreateVisualisationModal";
 import VerificationLoadingModal from "./VerificationLoadingModal";
 import Image from "next/image";
 import ShareModal from "./ShareModal";
+import { useTranslation } from "react-i18next";
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] =
     useState<boolean>(false);
@@ -57,21 +59,20 @@ const Hero: React.FC = () => {
             />
 
             <p className="text-sm md:text-base text-[#0F0A19] max-w-[34rem] flex-1">
-              Envision your new body with precision! Specify which parts you
-              want to improve, shape, and size.
+              {t("home.hero.text")}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 max-w-[300px] w-full gap-3">
-            <button className="bg-[#3D2278] text-white rounded-[10px]  h-12 text-center px-3 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-              Body Scan
+          <div className="flex gap-3">
+            <button className="bg-[#3D2278] text-white rounded-[10px] h-12 text-center px-5 text-sm md:text-lg tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
+              {t("btns.bodyscan")}
             </button>
 
             <button
               onClick={handleShareModal}
-              className="border-2 border-[#3D2278] rounded-[10px] h-12 text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
+              className="border-2 border-[#3D2278] rounded-[10px] h-12 text-center px-10 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
             >
-              Share
+              {t("btns.share")}
             </button>
           </div>
         </div>
@@ -86,16 +87,17 @@ const Hero: React.FC = () => {
           <div className="w-[15px] h-[15px] rounded-full bg-[#3d227833] cursor-pointer"></div>
           <div className="w-[15px] h-[15px] rounded-full bg-[#3d227833] cursor-pointer"></div>
         </div>
+
         <div className="grid grid-cols-2 gap-3 max-w-[300px] w-full mx-auto">
           <button className="bg-[#3D2278] text-white rounded-[10px] w-full h-11 text-center px-3 text-sm tracking-[2%] font-medium transition-opacity duration-300 hover:opacity-90">
-            Save
+            {t("btns.save")}
           </button>
 
           <button
             onClick={handleCreateClick}
             className="border-2 border-[#3D2278] rounded-[10px] h-11 w-full text-center px-3 text-[#3D2278] text-sm md:text-base font-medium transition-colors duration-300 hover:bg-[#3D2278] hover:text-white"
           >
-            Create
+            {t("btns.create")}
           </button>
         </div>
 
