@@ -11,12 +11,14 @@ const useLanguage = () => {
         const pathLang = window.location.pathname.split("/")[1];
         const storedLang = localStorage.getItem("selectedLanguage");
 
-        if (["en", "en"].includes(pathLang)) {
-          return "en";
-        } else if (pathLang === "en") {
-          return "en";
+        // Handle "pt-BR" case properly
+        if (["en", "pt-BR", "ru"].includes(pathLang)) {
+          return pathLang;
+        } else if (pathLang === "pt" || pathLang === "br") {
+          return "pt-BR";
         }
 
+        // Default to stored language or English
         return storedLang || "en";
       }
       return "en";
@@ -28,8 +30,10 @@ const useLanguage = () => {
       i18n.changeLanguage(selectedLang).catch((err) => {
         console.error("Error changing language:", err);
       });
-      localStorage.setItem("selectedLanguage", selectedLang);
     }
+
+    // Store the selected language
+    localStorage.setItem("selectedLanguage", selectedLang);
   }, [i18n]);
 };
 

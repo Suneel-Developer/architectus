@@ -35,7 +35,7 @@ const NavTabs = () => {
     let finalLang = storedLang || "en";
 
     if (langFromPath === "pt" || langFromPath === "br") {
-      finalLang = "pt-br";
+      finalLang = "pt-BR";
     } else if (langFromPath === "ru") {
       finalLang = "ru";
     }

@@ -11,14 +11,21 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
+    supportedLngs: ["en", "pt", "ru"], // Add your supported languages here
     debug: process.env.NODE_ENV === "development",
 
     interpolation: {
-      escapeValue: false,
+      escapeValue: false, // React already handles escaping
     },
 
     backend: {
+      // Updated loadPath to fetch from nested folder structure
       loadPath: "/locales/{{lng}}.json",
+    },
+
+    detection: {
+      order: ["localStorage", "path", "navigator"],
+      caches: ["localStorage"], // Store the selected language in localStorage
     },
 
     lng:
