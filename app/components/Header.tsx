@@ -16,7 +16,7 @@ const Header: React.FC = () => {
     let finalLang = storedLang || "en";
 
     if (langFromPath === "pt" || langFromPath === "br") {
-      finalLang = "pt-BR";
+      finalLang = "";
     } else if (langFromPath === "ru") {
       finalLang = "ru";
     }

@@ -7,7 +7,7 @@ import Image from "next/image";
 const languages = [
   { code: "en", name: "English", flag: "/assets/english-language-flag.svg" },
   {
-    code: "pt-BR",
+    code: "pt-br",
     name: "Brazilian",
     flag: "/assets/brazil-flag.svg",
   },

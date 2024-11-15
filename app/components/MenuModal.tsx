@@ -175,7 +175,7 @@ const MenuModal = () => {
     let finalLang = storedLang || "en";
 
     if (langFromPath === "pt" || langFromPath === "br") {
-      finalLang = "pt-BR";
+      finalLang = "pt-br";
     } else if (langFromPath === "ru") {
       finalLang = "ru";
     }
