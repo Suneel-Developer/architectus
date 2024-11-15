@@ -18,7 +18,9 @@ const NavTabs = () => {
 
     console.log("Current Pathname:", cleanPathname);
     console.log("Full Path:", fullPath);
+ 
 
+    
     return `tab-btn py-3 text-center min-w-[140px] md:min-w-[150px] rounded-[30px] text-base font-medium border-2 ${
       cleanPathname === fullPath
         ? "border-[#3D2278] text-[#3D2278]"
