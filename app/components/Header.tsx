@@ -6,7 +6,7 @@ import LanguageDropdown from "./LanguageDropdown";
 import { useTranslation } from "react-i18next";
 
 const Header: React.FC = () => {
-  const [currentLang, setCurrentLang] = useState("en");
+  const [currentLang, setCurrentLang] = useState("");
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -31,7 +31,10 @@ const Header: React.FC = () => {
     <header className="px-5 lg:px-20 navbar h-16 md:h-20 flex items-center justify-between bg-white sticky top-0 w-full z-50">
       <div className="z-50 w-full">
         <nav className="flex items-center justify-between max-w-[1400px] w-full mx-auto">
-          <Link href="/" className="flex items-center gap-3">
+          <Link
+            href={createLocalizedPath("/")}
+            className="flex items-center gap-3"
+          >
             <div className="logobg w-10 h-10 rounded-[10px] flex items-center justify-center">
               <svg
                 width="21"

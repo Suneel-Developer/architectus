@@ -11,10 +11,10 @@ const useLanguage = () => {
         const pathLang = window.location.pathname.split("/")[1];
         const storedLang = localStorage.getItem("selectedLanguage");
 
-        if (pathLang === "pt" || pathLang === "br") {
+        if (["pt", "br"].includes(pathLang)) {
           return "pt-BR";
-        } else if (pathLang === "ru") {
-          return "ru";
+        } else if (pathLang === "en") {
+          return "en";
         }
 
         return storedLang || "en";
@@ -24,7 +24,7 @@ const useLanguage = () => {
 
     const selectedLang = getLanguage();
 
-    if (i18n.isInitialized) {
+    if (i18n.language !== selectedLang && i18n.isInitialized) {
       i18n.changeLanguage(selectedLang).catch((err) => {
         console.error("Error changing language:", err);
       });
