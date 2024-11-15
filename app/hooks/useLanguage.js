@@ -11,9 +11,9 @@ const useLanguage = () => {
         const pathLang = window.location.pathname.split("/")[1];
         const storedLang = localStorage.getItem("selectedLanguage");
 
-        if (pathLang.toLowerCase() === "pt" || pathLang.toLowerCase() === "br") {
+        if (["pt", "br"].includes(pathLang)) {
           return "pt-BR";
-        } else if (pathLang.toLowerCase() === "en") {
+        } else if (pathLang === "en") {
           return "en";
         }
 
